@@ -1,0 +1,89 @@
+footer .main-footer{    
+    padding: 20px 0;
+    animation: trenxuong 1s ease-out;
+    background: #252525;
+
+}
+footer ul{  padding-left: 0;    list-style: none;}
+
+.footer- .logo {    display: inline-block;}
+
+
+.widget{    
+    padding: 0;  
+    margin-bottom: 40px;
+}
+.widget.widget-last{    margin-bottom: 0px;}
+.widget.no-box{ 
+    padding: 0; 
+    background-color: transparent;  
+    margin-bottom: 40px;
+    box-shadow: none; -webkit-box-shadow: none; 
+    -moz-box-shadow: none; 
+    -ms-box-shadow: none; 
+    -o-box-shadow: none;
+}.widget li a{   
+     color: white;
+     text-decoration: none;}
+.widget li a:hover{
+ color: #cd3c3f;
+}
+.widget.subscribe p{
+    margin-bottom: 18px;
+}
+
+
+.widget-title {margin-bottom: 20px;}
+.widget-title span {
+    background: #839FAD none repeat scroll 0 0;
+    display: block; height: 1px;
+    margin-top: 25px;
+    position: relative;
+    width: 30%;}
+.widget-title span::after {
+    background: inherit;
+    content: "";height: inherit;    
+    position: absolute;
+    top: -4px;
+    width: 80%;
+}
+.thumbnail-widget{
+     width: 120%;
+}
+
+ .typo-light h5, 
+.typo-light div,
+.typo-light small{  color: whitesmoke;}
+
+.foot{
+
+    width: 100%;
+       background-color: grey;
+}
+.foot_top{
+      height: 60px;
+     width: 100%;
+     border: 1px solid black;
+       background-color: #cd3c3f;
+}
+.foot .foot_left{
+          margin-left: 40px;
+   
+}
+.foot .foot_left ul p{
+       
+       font-size: 1.2rem;
+       color: white;
+       padding-top: 15px;
+}
+.foot .foot_right{
+     position: absolute;
+     z-index: 1000;
+     margin-top: -71px;
+     background-color: #2e5288;
+     right: 0;
+     height: 70px;
+     width: 400px;
+   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+}
+

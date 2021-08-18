@@ -1,0 +1,205 @@
+.strategic{
+margin-bottom: 20%;
+margin-top: 5%;
+}
+.strate{
+   background-color: white
+}
+.strate p{
+   font-size: 1.2rem;
+}.strate h2{
+   color: #cd3c3f !important;
+}
+.strategic .block1{
+height:600px;
+background-color:#2e5288; 
+}
+
+.strategic .img{
+ position: absolute;
+background: url('https://vinuni.edu.vn/wp-content/uploads/2020/05/QuangTruong3-scaled.jpg');
+
+ background-size: cover; 
+ background-position: top;
+ margin-left: -1%;
+ height: 100%;
+ width: 100%;
+}
+.two_band{
+     animation: trenxuong 1s ease-out;
+   float: left;
+   margin: 4%;
+    display: block;
+}
+.band1{
+background-color: white;
+width: 48%;
+position: relative;
+float: left;
+height: 350px;
+}
+.band1 img{
+   width: 80% ;
+   margin: 8%;
+}
+.band2{
+background-color: white;
+width: 48%;
+position: relative;
+float: right;
+height: 350px;
+}
+.band2 img{
+ width: 80% ;
+   margin: 8%
+}
+.band3{
+background-color: #2e5288;
+width: 40%;
+height: 80px;
+margin-top: 50px;
+position: relative;
+float: left;
+left: 30%;
+/* text-align: center; */
+}
+.band3 a{
+   position: absolute;
+   text-align: center;
+   padding: 3%;
+   margin-left: 20%;
+   color: whitesmoke !important;
+   font-size: 1.5rem;
+}
+.band3:hover{
+   background-color: white;
+}
+.band3 a:hover{
+text-decoration: none;
+   color: #2e5288 !important;
+   background-position: 0;
+}
+
+
+#slide ul{
+   list-style: none ;
+}
+.band1 a{
+   color: #cd3c3f!important;
+}
+.band2 a{
+   color: #cd3c3f!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.con2{
+     background-color: #f5f4f4 ;
+      width: 100%;
+      height: 600px  ;
+      margin-top: -8%;
+      position: relative;
+        padding: 3%;
+         animation: duoilen 1s ease-out;
+
+}
+.con2 .carousel {
+     margin: 10px auto;
+     /* padding: 0 7px; */
+     position: relative;
+
+}
+.con2 .carousel .carousel-item {
+     text-align: center;
+     overflow: hidden;
+}
+.con2 .carousel .carousel-item .img-box {
+     height: 100%
+     width: 100% !important;
+     position: relative;
+}
+.con2 .carousel .carousel-item img {    
+   width: 60%;
+    height: 150px;
+    display: inline-block;
+    left: 0;
+    right: 0;
+}
+
+.con2 .carousel .carousel-item .btn {
+     color: #333;
+     border-radius: 0;
+     font-size: 11px;
+     text-transform: uppercase;
+     font-weight: bold;
+     background: none;
+     border: 1px solid #ccc;
+     padding: 5px 10px;
+     margin-top: 5px;
+     line-height: 16px;
+}
+.con2 .carousel .carousel-item .btn:hover, .carousel .carousel-item .btn:focus {
+     color: #fff;
+     background: #000;
+     border-color: #000;
+     box-shadow: none;
+}
+.con2 .carousel .carousel-item .btn i {
+     font-size: 14px;
+     font-weight: bold;
+     margin-left: 5px;
+}
+.con2 .carousel .thumb-wrapper {
+     text-align: center;
+}
+.con2 .carousel .thumb-content {
+     padding: 15px;
+}
+.con2 .carousel-control-prev {height: 100px;
+     width: 30px !important   ;
+     height: 50px;
+     background: none;
+     margin-top: 30px;
+     background: rgba(0, 0, 0, 0.2);
+     }
+.con2 .carousel-control-next {
+     height: 100px;
+     width: 30px !important   ;
+     height: 50px;
+     background: none;
+     margin-top: 30px;
+     background: rgba(0, 0, 0, 0.2);
+     
+}
+.con2 .carousel-control-prev i, .carousel-control-next i {
+     font-size: 30px;
+     position: absolute;
+     top: 50%;
+     display: inline-block;
+     margin: -16px 0 0 0;
+     z-index: 5;
+     left: 0;
+     right: 0;
+     color: rgba(0, 0, 0, 0.8);
+     text-shadow: none;
+     font-weight: bold;
+
+}
+.con2 .carousel-control-prev i {
+     margin-left: -3px;
+}
+.con2 .carousel-control-next i {
+     margin-right: -3px;
+}

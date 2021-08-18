@@ -1,0 +1,138 @@
+
+li{
+   list-style: none;
+}
+.uiniversity-leader{
+   animation: trenxuong 1s ease-out;
+}
+.uiniversity-leader img{
+ position: absolute;
+ background-size: cover; 
+ margin-left: -4%;
+ height: 100%;
+
+ width: 100%;
+}
+.uiniversity-leader .carousel-control-prev{
+      background-color: rgba(0,0,0,.55);
+      width: 50px;
+      height: 70px;
+      margin-top: 15%;
+}
+.uiniversity-leader .carousel-control-next{
+      background-color: rgba(0,0,0,.55);
+      width: 50px;
+      height: 70px;
+      margin-top: 15%;
+}
+
+.uiniversity-leader .block1{
+height:300px;
+clip-path: polygon(100% 0, 100% 35%, 93% 44%, 100% 53%, 100% 100%, 0 100%, 0 65%, 0 29%, 0 0);
+}
+.uiniversity-leader .block1 img{
+    height:300px;  
+    transition: all 0.5s ease-in-out ;
+
+ 
+}
+.uiniversity-leader .block1:hover img{
+    transform: scale(1.2);
+
+}
+
+.uiniversity-leader .block4{
+   height:300px;  
+   background-color:#2e5288;
+   overflow: hidden;
+
+
+}
+.uiniversity-leader .block4 img{
+    height:300px;
+    transform: scale(1.015);
+     transition: all 0.5s ease-in-out ;  
+     background-color:#2e5288;
+   clip-path: polygon(0 0, 100% 0, 100% 34%, 100% 69%, 100% 100%, 0 100%, 0 55%, 8% 47%, 0 39%);
+
+ 
+}
+.uiniversity-leader .block4:hover img{
+    transform: scale(1.2);
+
+
+}
+
+.uiniversity-leader .block5{
+  background-color:#cd3c3f;
+     height:300px;  
+     overflow: hidden;
+}
+
+.uiniversity-leader .block5 img{
+   height:300px; 
+   clip-path: polygon(100% 0, 100% 35%, 93% 44%, 100% 53%, 100% 100%, 0 100%, 0 65%, 0 29%, 0 0);
+   transition: all 0.5s ease-in-out ;  
+}
+.uiniversity-leader .block5:hover img{
+   transform: scale(1.2);  
+}
+
+.uiniversity-leader .block8{
+   height:300px; 
+ clip-path: polygon(0 0, 100% 0, 100% 34%, 100% 69%, 100% 100%, 0 100%, 0 55%, 8% 47%, 0 39%);
+}
+.uiniversity-leader .block8 img{
+   height:300px; 
+   transition: all 0.5s ease-in-out;
+}
+.uiniversity-leader .block8:hover img{
+   transform: scale(1.2);
+}
+
+
+.uiniversity-leader .block2{
+   height:300px;      
+}
+
+
+.uiniversity-leader .block3{
+   height:300px; 
+   background-color:#2e5288; 
+}
+.block2 p{
+   font-size: 1.2rem;
+   line-height: 1.6;
+   color: #3e3e3e;    
+}
+.block3 .box-info{
+   margin-left: 15px;
+   margin-top: 15px;
+}
+.block3 p{
+   font-size: 1.2rem;
+   line-height: 1.6;
+   color: white;    
+}
+
+.uiniversity-leader .block6{
+   height:300px; 
+   background-color:#cd3c3f; 
+}
+.block6 {
+   font-size: 1.2rem;
+   line-height: 1.6;
+   color: white;    
+}
+.block7 p{
+   font-size: 1.2rem;
+   line-height: 1.6;
+   color: #3e3e3e;    
+}
+.uiniversity-leader .block7{
+   height:300px; 
+}
+
+
+
+

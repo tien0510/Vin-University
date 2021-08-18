@@ -1,0 +1,101 @@
+element .style {
+    overflow-x: hidden !important;
+}
+
+body{
+     margin: 0;
+     clear: both;
+     font-family: Montserrat,sans-serif;
+     overflow-x: hidden !important;
+
+}
+a:hover{
+     text-decoration: none !important;
+}
+ul{
+     list-style: none;
+}
+
+.view img{
+     width: 1536px;
+    aspect-ratio: auto 1536 / 678;
+    height: 678px;
+}
+
+
+.main{
+     animation: trenxuong 1s ease-out;
+}
+
+.carousel{
+     z-index: 1;
+     position: absolute;
+}
+
+
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(2);
+        transform: scale(2)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+@keyframes trenxuong {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes duoilen {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes traiqua {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes phaiqua {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    50% {
+        transform: translateX(-10px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
