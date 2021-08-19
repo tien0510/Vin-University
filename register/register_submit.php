@@ -4,12 +4,10 @@
 	if (isset($_POST['submit']) && $_POST["taikhoan"] != '' && $_POST["matkhau"] != '' && $_POST["re-matkhau"] != '') 
 	{
 		$username   = $_POST["taikhoan"];
-		$password   = password_hash(($_POST["matkhau"]), PASSWORD_DEFAULT);
-		$repassword = password_hash(($_POST["re-matkhau"]),PASSWORD_DEFAULT);
+		$password   =($_POST["matkhau"]);
+		$repassword = ($_POST["re-matkhau"]);
 
-
-
-			if( $password != $repassword  ){			
+			if( $password!=$repassword ){			
 				echo "<script>
 					      alert('Mật khẩu không trùng khớp');
 							window.location='http://localhost/Vin/register/register.php';
@@ -27,7 +25,8 @@
 					      </script>";
 				}
 
-				else if($password === $repassword){
+				else if($password==$repassword ){
+					$password = password_hash($password, PASSWORD_DEFAULT);
 					$sql="insert into login(taikhoan,matkhau) values('$username','$password')";
 					// print($sql);
 					// exit();
