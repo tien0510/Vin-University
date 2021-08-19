@@ -118,7 +118,7 @@ if (isset($_GET['id'])) {
 <body  style="    background:url('https://st.quantrimang.com/photos/image/2020/07/30/Hinh-Nen-Trang-9.jpg');">
 	<ul class="nav nav-tabs">
 	  <li class="nav-item">
-	    <a class="nav-link" href="../account/">Quản Lý Tài Khoản</a>
+	    <a class="nav-link"  href="../account/">Quản Lý Tài Khoản</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" href="index.php">Quản Lý Bài Đăng</a>
@@ -136,7 +136,7 @@ if (isset($_GET['id'])) {
           <div id="info"><div>
             <hr> 
             <label for="title_r" style="color: #a52a2a; font-size:22px; margin-left:5px ; ">Tên </label>
-            <input style="margin-left: 20%; width: 50% ;" class="text-center" type="text" name="tenbai" id="tenbai" maxlength="500" value="<?=$title?>">
+            <input required="true" style="margin-left: 20%; width: 50% ;" class="text-center" type="text" name="tenbai" id="tenbai" maxlength="500" value="<?=$title?>">
           </div>
             <hr>
             

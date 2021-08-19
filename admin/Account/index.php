@@ -65,8 +65,8 @@ require_once ('../../db/dbhelper.php');
 						<tr>
 							<th width="50px" class="text-warning">STT</th>
 							<th class="text-warning">Tên Tài Khoản</th>
-					<!-- 		<th class="text-warning"> Mật Khẩu</th> -->
 							<th class="text-warning"> Loại Tài Khoản</th>
+							<th class="text-warning"> Cập nhật tài khoản</th>
 							<th width="50px"></th>
 							<th width="50px"></th>
 						</tr>
@@ -80,7 +80,7 @@ $loginList = executeResult($sql);
 $index = 1;
 foreach ($loginList as $item) {
 		if ($item['trangthai']==0) {
-
+			
 			$type_acc = "Guess";
 		}
 		else{
@@ -91,6 +91,10 @@ foreach ($loginList as $item) {
 				<td >'.$item['taikhoan'].'</td>
 				
 				<td >'.$type_acc.'</td>
+				<td style = "width: 18%" >
+					
+					<a href="ChangeTypeAcc.php?id='.$item['id'].'"><button class="btn btn-info">Đổi quyền </button></a>
+
 				<td>
 					<a href="add.php?id='.$item['id'].'"><button class="btn btn-warning">Sửa</button></a>
 				</td>
@@ -124,6 +128,8 @@ foreach ($loginList as $item) {
 				location.reload()
 			})
 		}
+
+
 	</script>
 
 	

@@ -1,5 +1,7 @@
 <?php
 require_once ('../../db/dbhelper.php');
+	
+
 
 if (!empty($_POST)) {
 	if (isset($_POST['action'])) {
@@ -14,6 +16,7 @@ if (!empty($_POST)) {
 					execute($sql);
 				}
 				break;
+		
 		}
 	}
 }

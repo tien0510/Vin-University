@@ -15,21 +15,23 @@ $id = $name  = $mk =  $type_acc = '';
 if (!empty($_POST)) {
 	if (isset($_POST['taikhoan'])) {
 		$name = $_POST['taikhoan'];
+
 	}
 	if (isset($_POST['id'])) {
 		$id = $_POST['id'];
+
 	}
 
 	if (isset($_POST['matkhau'])) {
 		$mk = password_hash(($_POST['matkhau']), PASSWORD_DEFAULT);
 	}
+
 	if (isset($_POST['loaitk'])) {
 		$type_acc = $_POST['loaitk'];
 	}
 
 	$exist = "select * from login where taikhoan = '".$name."' ";
-
-	
+		
 
 	if (!empty($name)) {
 		//Luu vao database
@@ -68,7 +70,7 @@ if (isset($_GET['id'])) {
 	$login = executeSingleResult($sql);
 	if ($login != null) {
 		$name 	  = $login['taikhoan'];
-		$mk 	  = $login['matkhau'];
+		// $mk 	  = $login['matkhau'];
 		$type_acc = $login['trangthai'];
 	}
 }
@@ -94,11 +96,12 @@ if (isset($_GET['id'])) {
 </head>
 <body style="background: url('../../images/6.PNG') ; overflow-y: hidden;">
 	<ul class="nav nav-tabs">
+	  
 	  <li class="nav-item">
-	    <a class="nav-link " href="../Account/">Quản Lý Tài Khoản</a>
+	    <a class="nav-link" style="color: #BCFCC1;border-right: 2px solid white;font-weight:bold" href="../Post/">Quản Lý Bài Đăng</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="../Post/">Quản Lý Bài Đăng</a>
+	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Account/">Quản Lý Tài Khoản</a>
 	  </li>
 	</ul>
 
