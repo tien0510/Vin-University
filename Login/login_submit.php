@@ -6,15 +6,27 @@
 	{
 			// $id_user    = $_POST["id"];
 			$username      = $_POST["taikhoan"];
-			$password   = md5($_POST["matkhau"]);
-			$sql		= "select * from login where taikhoan ='$username' and matkhau='$password' " ;
+			$password  	   = $_POST["matkhau"] ;
+
+			$verf		= "select matkhau from login where taikhoan ='$username' ";
+			$verify  = executeSingleResult($verf);
+			if ($verify != null) {
+				$v = $verify['matkhau'];
+			}
+			
+			$check = password_verify($password, $v) ;
+
+
+			if ($check) {
+
+			$sql		= "select * from login where taikhoan ='$username'";
 			$stt  = executeSingleResult($sql);
 			$user = execute($sql); 
 			if ( $stt != null) {
 				$status = $stt['trangthai'];
-			}
-			// var_dump($user);
-			// exit();
+			}			
+			
+
 			if(mysqli_num_rows($user)>0){
 				if($status == 1){	
 					echo "<script>
@@ -30,7 +42,7 @@
 				$_SESSION["username"] = $username;
 				header("Location: ../index.php");
 				}
-			}
+			}}
 			else{
 				echo "<script>
 					      alert('Nhập sai tên Tài Khoản hoặc Mật Khẩu');

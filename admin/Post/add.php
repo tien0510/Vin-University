@@ -115,7 +115,7 @@ if (isset($_GET['id'])) {
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
-<body  style="    background-color:#F0E7E7;">
+<body  style="    background:url('https://st.quantrimang.com/photos/image/2020/07/30/Hinh-Nen-Trang-9.jpg');">
 	<ul class="nav nav-tabs">
 	  <li class="nav-item">
 	    <a class="nav-link" href="../account/">Quản Lý Tài Khoản</a>

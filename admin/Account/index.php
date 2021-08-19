@@ -47,7 +47,7 @@ require_once ('../../db/dbhelper.php');
 	<div class="container">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center text-info">Quản Lý Tài Khoản</h2>
+				<h2 class="text-center" style="color: #FFFFFF;">Quản Lý Tài Khoản</h2>
 			</div>
 			<div class="panel-body">
 				<a href="add.php">
@@ -65,7 +65,7 @@ require_once ('../../db/dbhelper.php');
 						<tr>
 							<th width="50px" class="text-warning">STT</th>
 							<th class="text-warning">Tên Tài Khoản</th>
-							<th class="text-warning"> Mật Khẩu</th>
+					<!-- 		<th class="text-warning"> Mật Khẩu</th> -->
 							<th class="text-warning"> Loại Tài Khoản</th>
 							<th width="50px"></th>
 							<th width="50px"></th>
@@ -89,7 +89,7 @@ foreach ($loginList as $item) {
 	echo '<tr>
 				<td class="text-warning">'.($index++).'</td>
 				<td >'.$item['taikhoan'].'</td>
-				<td >'.$item['matkhau'].'</td>
+				
 				<td >'.$type_acc.'</td>
 				<td>
 					<a href="add.php?id='.$item['id'].'"><button class="btn btn-warning">Sửa</button></a>

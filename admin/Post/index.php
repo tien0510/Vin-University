@@ -50,7 +50,7 @@ require_once ('../../db/dbhelper.php');
     color: #2e5288;
 }
 </style>
-<body style="background-color:#D2CCCC ; ">
+<body style="    background:url('http://khohinhdep.com/wp-content/uploads/2017/10/hinh-nen-dien-thoai-lg-v20-chat-luong-qhd-010.jpg');">
 	<ul class="nav nav-tabs">
 
 	  <li class="nav-item">

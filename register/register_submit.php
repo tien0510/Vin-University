@@ -4,8 +4,8 @@
 	if (isset($_POST['submit']) && $_POST["taikhoan"] != '' && $_POST["matkhau"] != '' && $_POST["re-matkhau"] != '') 
 	{
 		$username   = $_POST["taikhoan"];
-		$password   = md5($_POST["matkhau"]);
-		$repassword = md5($_POST["re-matkhau"]);
+		$password   = password_hash(($_POST["matkhau"]), PASSWORD_DEFAULT);
+		$repassword = password_hash(($_POST["re-matkhau"]),PASSWORD_DEFAULT);
 
 
 

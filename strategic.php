@@ -177,7 +177,7 @@
 
 <div class="video">
 	 <video controls style="width: 100%; right: 0;">
-        <source src="Video/video-vinuni.mp4">
+        <source src="https://vinuni.edu.vn/wp-content/themes/vinuni/assets/files/video-vinuni.mp4">
     </video>
 	
 </div>

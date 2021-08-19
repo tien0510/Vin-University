@@ -1,5 +1,5 @@
 <?php
-require_once ('../../db/dbhelper.php');
+	require_once ('../../db/dbhelper.php');
     session_start();
     $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
 
@@ -21,7 +21,7 @@ if (!empty($_POST)) {
 	}
 
 	if (isset($_POST['matkhau'])) {
-		$mk = md5($_POST['matkhau']);
+		$mk = password_hash(($_POST['matkhau']), PASSWORD_DEFAULT);
 	}
 	if (isset($_POST['loaitk'])) {
 		$type_acc = $_POST['loaitk'];
@@ -105,10 +105,10 @@ if (isset($_GET['id'])) {
 	<div class="container">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center">Thêm/Sửa Tài Khoản</h2>
+				<h2 class="text-center" style=" margin-left : -10%;margin-top:3%;color: #FFFFFF;">Thêm/Sửa Tài Khoản</h2>
 			</div>
-			<div class="panel-body">
-				<form method="post" style = "width: 50% ;">
+			<div class="panel-body" >
+				<form method="post" style = "width: 50% ; margin-left : 20%;margin-top:3%;">
 					<div class="form-group">
 					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="taikhoan">Tên Tài Khoản:</label>
 					  <input type="text" name="id" value="<?=$id?>" hidden="true">
