@@ -20,31 +20,31 @@
 </head>
 <body style="background: url('../images/6.PNG') ">
       <div class="action">
-              <a href="../Login/login.php" title='Quay Trở lại Đăng Nhập'><button name="datphong" class=" btn btn-success" style= type="button"><i>Đăng Nhập Ngay</i></button>
+              <a href="../Login/login.php" title='Back to log in'><button name="datphong" class=" btn btn-success" style= type="button"><i>Log In Now</i></button>
               
 </a>
             </div>
 <form action="register_submit.php" method="POST" style="max-width:500px;margin:auto">
-  <h2> Đăng Kí Tài Khoản</h2>
+  <h2> Register</h2>
   	<i style="color:#fff ; font-size :2.5rem ;">Username </i>
 
   <div class="input-container">
 <!--     <i class="fa fa-user "></i> -->
-    <input class="input-field" type="text" placeholder="Username" name="taikhoan">
+    <input class="input-field" type="text" placeholder="Username" name="user_name">
   </div>
 
     	<i style="color:#fff ; font-size :2.5rem ;">Password</i>
 
   <div class="input-container">
 <!--     <i class="fa fa-key "></i> -->
-    <input class="input-field" type="password" placeholder="Password" name="matkhau">
+    <input class="input-field" type="password" placeholder="Password" name="password">
   </div>
 
     	<i style="color:#fff ; font-size :2.5rem ;">Re-Password</i>
 
   <div class="input-container">
 <!--     <i class="fa fa-key "></i> -->
-    <input class="input-field" type="password" placeholder="Password" name="re-matkhau">
+    <input class="input-field" type="password" placeholder="Password" name="re_password">
   </div>
 
   <button type="submit" name="submit" class="btn">Register</button>

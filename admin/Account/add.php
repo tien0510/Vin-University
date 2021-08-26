@@ -1,11 +1,11 @@
 <?php
 	require_once ('../../db/dbhelper.php');
     session_start();
-    $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
+    $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
  	$check = executeSingleResult($check);
  	if ($check != null) {
- 		$status = $check['trangthai'];
+ 		$status = $check['type'];
  	}
     if (!isset($_SESSION["username"]) || $status == 0 )
         {     header("Location:../../index.php");
@@ -13,8 +13,8 @@
         }
 $id = $name  = $mk =  $type_acc = '';
 if (!empty($_POST)) {
-	if (isset($_POST['taikhoan'])) {
-		$name = $_POST['taikhoan'];
+	if (isset($_POST['user_name'])) {
+		$name = $_POST['user_name'];
 
 	}
 	if (isset($_POST['id'])) {
@@ -22,15 +22,15 @@ if (!empty($_POST)) {
 
 	}
 
-	if (isset($_POST['matkhau'])) {
-		$mk = password_hash(($_POST['matkhau']), PASSWORD_DEFAULT);
+	if (isset($_POST['password'])) {
+		$mk = password_hash(($_POST['password']), PASSWORD_DEFAULT);
 	}
 
-	if (isset($_POST['loaitk'])) {
-		$type_acc = $_POST['loaitk'];
+	if (isset($_POST['type'])) {
+		$type_acc = $_POST['type'];
 	}
 
-	$exist = "select * from login where taikhoan = '".$name."' ";
+	$exist = "select * from user where user_name = '".$name."' ";
 		
 
 	if (!empty($name)) {
@@ -38,14 +38,14 @@ if (!empty($_POST)) {
 		if ($id == '') {
 			if( mysqli_num_rows(execute($exist)) < 1) {
 			
-				$sql = 'insert into login(taikhoan, matkhau) values("'.$name.'", "'.$mk.'")';
+				$sql = 'insert into user(user_name, password) values("'.$name.'", "'.$mk.'")';
 				execute($sql);
 				header('Location: index.php');
 				die();
 			}
 			else{
 				echo "<script>
-			      alert('Tên tài khoản hiện đã được sử dụng');
+			      alert('Account is already in use');
 			      window.location='http://localhost/vin/admin/Account/add.php';
 			      </script>" ;	
 			      die();
@@ -54,7 +54,7 @@ if (!empty($_POST)) {
 			}
 		}
 		 else {
-			$sql = 'update login set taikhoan = "'.$name.'", matkhau = "'.$mk.'", trangthai = '.$type_acc.' where id = '.$id;
+			$sql = 'update user set user_name = "'.$name.'", password = "'.$mk.'", type = '.$type_acc.' where id = '.$id;
 			execute($sql);
 			header('Location: index.php');
 			die();
@@ -66,12 +66,11 @@ if (!empty($_POST)) {
 
 if (isset($_GET['id'])) {
 	$id       = $_GET['id']; 
-	$sql      = 'select * from login where id = '.$id;
-	$login = executeSingleResult($sql);
-	if ($login != null) {
-		$name 	  = $login['taikhoan'];
-		// $mk 	  = $login['matkhau'];
-		$type_acc = $login['trangthai'];
+	$sql      = 'select * from user where id = '.$id;
+	$user = executeSingleResult($sql);
+	if ($user != null) {
+		$name 	  = $user['user_name'];
+		$type_acc = $user['type'];
 	}
 }
 ?>
@@ -81,7 +80,7 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Thêm/Sửa Tài Khoản</title>
+	<title>Add/Update Account</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="shortcut icon" type="image/ico" href="../icon/logo.ico">
@@ -98,43 +97,43 @@ if (isset($_GET['id'])) {
 	<ul class="nav nav-tabs">
 	  
 	  <li class="nav-item">
-	    <a class="nav-link" style="color: #BCFCC1;border-right: 2px solid white;font-weight:bold" href="../Post/">Quản Lý Bài Đăng</a>
+	    <a class="nav-link" style="color: #BCFCC1;border-right: 2px solid white;font-weight:bold" href="../Post/">Post Management</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Account/">Quản Lý Tài Khoản</a>
+	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Account/">Account Management</a>
 	  </li>
 	</ul>
 
 	<div class="container">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center" style=" margin-left : -10%;margin-top:3%;color: #FFFFFF;">Thêm/Sửa Tài Khoản</h2>
+				<h2 class="text-center" style=" margin-left : -10%;margin-top:3%;color: #FFFFFF;">Add/Update Account</h2>
 			</div>
 			<div class="panel-body" >
 				<form method="post" style = "width: 50% ; margin-left : 20%;margin-top:3%;">
 					<div class="form-group">
-					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="taikhoan">Tên Tài Khoản:</label>
+					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="user_name">Account Name </label>
 					  <input type="text" name="id" value="<?=$id?>" hidden="true">
 
-					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="taikhoan" name="taikhoan" 
+					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="user_name" name="user_name" 
 					  value="<?=$name?>" >
 
 					</div>
 					<div class="form-group">
-					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="matkhau">Đặt Mật Khẩu:</label>
+					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="password">Password</label>
 					  
-					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="matkhau" name="matkhau" value="<?=$mk?>" >
+					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="password" name="password" value="<?=$mk?>" >
 					</div>
 					<div class="form-group">
-					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="matkhau">Loại tài khoản:</label>
+					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="password">Account Type</label>
 					  
-					  <select style="padding-left: 42% ;font-size : 20px;" required="true" type="text" class="form-control" id="loaitk" name="loaitk" value="<?=$type_acc?>" >
+					  <select style="padding-left: 42% ;font-size : 20px;" required="true" type="text" class="form-control" id="type" name="type" value="<?=$type_acc?>" >
 					  	<option   value=0 selected><p >Guess</p></option>
 					  	<option  value=1 <?php if( $type_acc!="" && $type_acc==1) echo "selected"?> >Admin</option>	 
 					  </select>
 					</div>
 
-					<button style="width: 50%; margin-left : 20%" class="btn btn-success">Lưu</button>
+					<button style="width: 50%; margin-left : 20%" class="btn btn-success">Save</button>
 				</form>
 			</div>
 		</div>

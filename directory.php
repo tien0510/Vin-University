@@ -47,11 +47,11 @@
          <?php 
         if (isset($_GET['searchText'])) {
            $searchText= $_GET['searchText'];
-           $wh = " where name like '%".$searchText."%'  and trangthai = 0 ";
+           $wh = " where name like '%".$searchText."%'  and status = 0 ";
          }
            else{
              $searchText="";
-             $wh = " where name like '%".$searchText."%' and trangthai = 0 ";
+             $wh = " where name like '%".$searchText."%' and status = 0 ";
 
            }
             ?>
@@ -80,8 +80,8 @@
   // exit();
 
    $total_s       = execute($sql_total);
-   $total_s       = mysqli_num_rows($total_s);
-   $total_page    = ceil($total_s/$numberpage);
+   $total_s       = mysqli_num_rows($total_s); // tổng bản ghi
+   $total_page    = ceil($total_s/$numberpage); // chia ra số trang làm tròn lên
    // print($total_page);
 
   $datas = executeResult($sql);

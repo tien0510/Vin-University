@@ -2,11 +2,11 @@
 // require_once ('db/dbhelper.php');
 // session_start();
 if (isset($_SESSION['username'])) {
-	 $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
+	 $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
  	$check = executeSingleResult($check);
  	if ($check != null) {
- 		$status = $check['trangthai'];
+ 		$status = $check['type'];
  	}
 }
 
@@ -25,7 +25,7 @@ if (isset($_SESSION['username'])) {
 						<a href="directory.php">DIRECTORY</a>
 					</li>
 					<li style="border: 0px;"> 
-						<a  href="#">CONTACT</a>
+						<a  href="contact.php">CONTACT</a>
 					</li>
 				</ul>
 			</div>
@@ -169,30 +169,36 @@ if (isset($_SESSION['username'])) {
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="Login/login.php">Đăng Nhập</a>
+									<a href="Login/login.php">Login</a>
 								</li>
 								<li>
-									<a href="register/register.php">Đăng ký</a>
+									<a href="register/register.php">Register</a>
 								</li>
 							</ul>
 						</div>
 				
 				<?php } else{ ?>
 
-					<a href="manage.php">Xin chào <?=$_SESSION['username']?></a>
+					<?php if ($status == 1){?>
+						<a href="#">Hello <?=$_SESSION['username']?></a>
+					<?php }else{?>
+						<a href="manage.php">Hello <?=$_SESSION['username']?></a>
+
+				<?php	}  ?>
+					
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="logout.php">Đăng Xuất</a>
+									<a href="logout.php">Logout</a>
 								</li>
 								<?php if ($status == 0) {?>
 								<li>
-									<a href="post.php">Đăng Bài</a>
+									<a href="post.php">Post</a>
 								</li>
 							<?php }?> 
 								<?php if ($status == 1) {?>
 								<li>
-									<a href="admin/Account/index.php">Trang quản trị</a>
+									<a href="admin/Account/index.php">Management page</a>
 								</li>
 								<?php } ?>
 								
@@ -209,32 +215,6 @@ if (isset($_SESSION['username'])) {
 	</div>
 	</header>
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <script type="text/javascript">
     window.onscroll = function ()

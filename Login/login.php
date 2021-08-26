@@ -20,12 +20,12 @@ session_start();
     </div>
 
     <div class="container">
-      <label for="taikhoan"><b>Username</b></label>
+      <label for="user_name"><b>User name</b></label>
       
-      <input type="text" placeholder="Enter Username" name="taikhoan" required>
+      <input type="text" placeholder="Enter Username" name="user_name" required>
 
-      <label for="matkhau"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="matkhau" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
         
       <button type="submit" name="submit">Login</button>
       <label>
@@ -37,7 +37,7 @@ session_start();
       <a href="../index.php" style="text-decoration: none ; color: black;" title="">
       <span  class="cancelbtn">Cancel</span> </a>
 
-      <span class="psw">Bạn Chưa Có Tài Khoản? <a class="regist"  href="../register/register.php"> Đăng Kí Ngay </a></span>
+      <span class="psw">Do not have an account? <a class="regist"  href="../register/register.php"> Register now </a></span>
     </div>
   </form>
 </div>

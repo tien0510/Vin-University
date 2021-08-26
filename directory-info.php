@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Information-Directory-VinUni</title>
 		<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/directory-info.css">
     <link rel="shortcut icon" type="image/ico" href="icon/logo.ico">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/directory-info.css">
@@ -51,8 +52,8 @@
   
       <div class="container-fliud" style="padding : 7%">
 
-        <div class="wrapper row">
-          <div class="preview col-md-6">
+        <div class="wrapper row" style="margin-top : -80px">
+          <div class="preview col-md-4">
               <div class="tab-pane active" id="pic-1"><img style=" margin-top : 20px;" alt="Hình ảnh" src="<?=$thumbnail?>">
 
               </div>

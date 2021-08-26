@@ -12,7 +12,7 @@ if (!empty($_POST)) {
 				if (isset($_POST['id'])) {
 					$id = $_POST['id'];
 
-					$sql = 'delete from login where id = '.$id;
+					$sql = 'delete from user where id = '.$id;
 					execute($sql);
 				}
 				break;

@@ -3,33 +3,33 @@ require_once ('db/dbhelper.php');
 	  date_default_timezone_set('Asia/Ho_Chi_Minh');		
 		$create = date('Y-m-d');
     session_start();
-    $id_now = ' select id from login where taikhoan = "'.$_SESSION['username'].'"';
+    $id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
 		$id_user     = executeSingleResult($id_now);
 		if ($id_user != null) {
 			$id_user = $id_user['id'];
 		}
-    $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
+    $check = "select status from user where user_name = '".$_SESSION['username']."'" ;
 
     if (!isset($_SESSION["username"]) )
         {     header("Location:index.php");
        
         }
 
-$id =  $title = $status = $mota = $thumbnail = $content =  '';
+$id =  $title = $status = $intro = $thumbnail = $content =  '';
 if (!empty($_POST)) {
 	if (isset($_POST['id'])) {
 		$id = $_POST['id'];
 	}	
-	if (isset($_POST['tenbai'])) {
-			$title = $_POST['tenbai'];
+	if (isset($_POST['name'])) {
+			$title = $_POST['name'];
 			$title = str_replace('"', '\\"', $title);
 		}
-		if (isset($_POST['trangthai'])) {
-		$status = $_POST['trangthai'];
+		if (isset($_POST['status'])) {
+		$status = $_POST['status'];
 	}
-	if (isset($_POST['mota'])) {
-		$mota = $_POST['mota'];
-		$mota = str_replace('"', '\\"', $mota);
+	if (isset($_POST['intro'])) {
+		$intro = $_POST['intro'];
+		$intro = str_replace('"', '\\"', $intro);
 	}
 	if (isset($_POST['thumbnail'])) {
 		$thumbnail = $_POST['thumbnail'];
@@ -50,10 +50,10 @@ if (!empty($_POST)) {
 		//Luu vao database
 		if ( (!isset($_GET['id'])) && $id == '') {
 
-			$sql = 'insert into directory(name, thumbnail, intro, overview, create_date, trangthai ,id_user) values("'.$title.'", "'.$thumbnail.'", "'.$mota.'", "'.$content.'", "'.$create.'", '.$status.', '.$id_user.')';
+			$sql = 'insert into directory(name, thumbnail, intro, overview, create_date, status ,id_user) values("'.$title.'", "'.$thumbnail.'", "'.$intro.'", "'.$content.'", "'.$create.'", '.$status.', '.$id_user.')';
 		} else {
 			$id      = $_GET['id'];
-			$sql = 'update directory set name = "'.$title.'", thumbnail = "'.$thumbnail.'", intro = "'.$mota.'", overview = "'.$content.'", create_date = "'.$create.'", trangthai = '.$status.' where id = '.$id;
+			$sql = 'update directory set name = "'.$title.'", thumbnail = "'.$thumbnail.'", intro = "'.$intro.'", overview = "'.$content.'", create_date = "'.$create.'", status = '.$status.' where id = '.$id;
 		}
 
 		execute($sql);
@@ -74,7 +74,7 @@ if (isset($_GET['id'])) {
 		$title       = $post['name'];
 		$status 	 = 1 ;
 		$create    = $post['create_date'];
-		$mota        = $post['intro'];
+		$intro        = $post['intro'];
 		$a='../../';
 		$b=" ".$post["thumbnail"];
 
@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Thêm/Sửa Bài Đăng</title>
+	<title>Add/Update Post</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	         <link rel="stylesheet" type="text/css" href="css/post.css">
@@ -116,9 +116,9 @@ if (isset($_GET['id'])) {
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
-<body style="    background:url('https://st.quantrimang.com/photos/image/2020/07/30/Hinh-Nen-Trang-9.jpg');">
+<body style="background:url('https://st.quantrimang.com/photos/image/2020/07/30/Hinh-Nen-Trang-9.jpg');">
 
-				<h2 class="text-center">Thêm/Sửa Bài Đăng</h2>
+				<h2 class="text-center" style="	margin : 2% auto">Add/Update Post</h2>
 
 
 	<div class="container">
@@ -126,25 +126,25 @@ if (isset($_GET['id'])) {
         <div class="row">
           <div id="info"><div>
             <hr> 
-            <label for="title_r" style="color: #a52a2a; font-size:22px; margin-left:5px ; ">Tên </label>
-            <input style="margin-left: 20%; width: 50% ;" class="text-center" type="text" name="tenbai" id="tenbai" maxlength="500" value="<?=$title?>">
+            <label for="title_r" style="color: #a52a2a; font-size:22px; ">Name </label>
+            <input style="margin-left: 20%; width: 50% ;" class="text-center" type="text" name="name" id="name" maxlength="500" value="<?=$title?>">
           </div>
             <hr>
             
 
-          <h2>Trạng Thái</h2>
+          <h2>Status</h2>
             <div class="row">
-              <label for="" class="col-4">Trạng Thái</label>
-              <select class="form-control" style="width: 200px; " name="trangthai" id="trangthai">					  	
-					  	<option  	value=1 <?php if( $status!="" && $status==1) echo "selected"?>>Chờ Duyệt</option>	 
+              <label for="" class="col-4">Status</label>
+              <select class="form-control" style="width: 250px; " name="status" id="status">					  	
+					  	<option  	value=1 <?php if( $status!="" && $status==1) echo "selected"?>>Waiting for approval</option>	 
 					  	 </select>
             </div>
 
             <hr>
 
-            <h2>Ngày viết bài</h2>
+            <h2>Date of writing</h2>
             <div class="row">
-              <label for="" class="col-4">Ngày</label>
+              <label for="" class="col-4">Date</label>
               <input  style="width: 200px;" type="date" name="create_date" id="create_date" min="0" value="<?=$create?>">
               
             </div>
@@ -153,10 +153,10 @@ if (isset($_GET['id'])) {
 
          
           <div style="margin-left:0px;" id="contact">
-          <h2>Mô tả</h2>
+          <h2>Description</h2>
 
           <div>
-            <textarea id="mota" name="mota" rows="10" cols="50" maxlength="4000" ><?=$mota?></textarea>
+            <textarea id="intro" name="intro" rows="10" cols="50" maxlength="4000" ><?=$intro?></textarea>
           </div>
 
 
@@ -184,13 +184,13 @@ if (isset($_GET['id'])) {
 
            <hr>
             <div class="form-group"  style="background-color:  white;" >
-          				  <label for="noidung" style="color: #a52a2a;">Nội Dung:</label>
+          				  <label for="noidung" style="color: #a52a2a;">Content:</label>
            				 <textarea class="form-control" rows="6" name="overview" id="noidung"?><?=$content?></textarea>
           	</div>
 		</div>
 
    
-        	<button class="btn btn-success">Lưu</button>
+        	<button class="btn btn-success">Save</button>
 
     </form>
     </div>

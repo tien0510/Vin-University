@@ -1,11 +1,11 @@
 <?php
 require_once ('../../db/dbhelper.php');
     session_start();
-       $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
+       $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
  	$check = executeSingleResult($check);
  	if ($check != null) {
- 		$status = $check['trangthai'];
+ 		$status = $check['type'];
  	}
     if (!isset($_SESSION["username"]) || $status == 0 )
         {     header("Location:../../index.php");
@@ -36,10 +36,10 @@ require_once ('../../db/dbhelper.php');
 	<ul class="nav nav-tabs">
 	  
 	  <li class="nav-item">
-	    <a class="nav-link" href="../Post/">Quản Lý Bài Đăng</a>
+	    <a class="nav-link" href="../Post/">Post Management</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Quản Lý Tài Khoản</a>
+	    <a class="nav-link active" href="#">Account Management</a>
 	  </li>
 
 	</ul>
@@ -47,26 +47,26 @@ require_once ('../../db/dbhelper.php');
 	<div class="container">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center" style="color: #FFFFFF;">Quản Lý Tài Khoản</h2>
+				<h2 class="text-center" style="color: #FFFFFF;">Account Management</h2>
 			</div>
 			<div class="panel-body">
 				<a href="add.php">
-					<button class="btn btn-success" style="margin-left: 10%;margin-bottom: 15px;">Thêm Tài Khoản</button>
+					<button class="btn btn-success" style="margin-left: 10%;margin-bottom: 15px;">Add Account</button>
 				</a>
 				<a href="../../index.php">
-					<button class="btn btn-warning" style="width: 15%;margin-left: 25vh ; margin-bottom: 15px "> Trang Chủ </button>
+					<button class="btn btn-warning" style="width: 15%;margin-left: 25vh ; margin-bottom: 15px "> Home</button>
 				</a>
 				<a href="../../logout.php">
-					<button class="btn btn-danger" style="width: 15%;margin-left: 25vh ; margin-bottom: 15px "> Đăng Xuất </button>
+					<button class="btn btn-danger" style="width: 15%;margin-left: 25vh ; margin-bottom: 15px "> Log out</button>
 				</a>
 
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th width="50px" class="text-warning">STT</th>
-							<th class="text-warning">Tên Tài Khoản</th>
-							<th class="text-warning"> Loại Tài Khoản</th>
-							<th class="text-warning"> Cập nhật tài khoản</th>
+							<th width="50px" class="text-warning">Numbers</th>
+							<th class="text-warning"> Account Name</th>
+							<th class="text-warning"> Account Tpye</th>
+							<th class="text-warning"> Change Type Of Account</th>
 							<th width="50px"></th>
 							<th width="50px"></th>
 						</tr>
@@ -74,12 +74,12 @@ require_once ('../../db/dbhelper.php');
 					<tbody>
 <?php
 //Lay danh sach tai khoan tu database
-$sql          = 'select * from login';
-$loginList = executeResult($sql);
+$sql          = 'select * from user';
+$userList = executeResult($sql);
 
 $index = 1;
-foreach ($loginList as $item) {
-		if ($item['trangthai']==0) {
+foreach ($userList as $item) {
+		if ($item['type']==0) {
 			
 			$type_acc = "Guess";
 		}
@@ -88,18 +88,18 @@ foreach ($loginList as $item) {
 		}
 	echo '<tr>
 				<td class="text-warning">'.($index++).'</td>
-				<td >'.$item['taikhoan'].'</td>
+				<td >'.$item['user_name'].'</td>
 				
 				<td >'.$type_acc.'</td>
 				<td style = "width: 18%" >
 					
-					<a href="ChangeTypeAcc.php?id='.$item['id'].'"><button class="btn btn-info">Đổi quyền </button></a>
+					<a href="ChangeTypeAcc.php?id='.$item['id'].'"><button class="btn btn-info">Change</button></a>
 
 				<td>
-					<a href="add.php?id='.$item['id'].'"><button class="btn btn-warning">Sửa</button></a>
+					<a href="add.php?id='.$item['id'].'"><button class="btn btn-warning">Update</button></a>
 				</td>
 				<td>
-					<button class="btn btn-danger" onclick="deleteCategory('.$item['id'].')">Xoá</button>
+					<button class="btn btn-danger" onclick="deleteAccount('.$item['id'].')">Delete</button>
 				</td>
 			</tr>';
 }
@@ -113,8 +113,8 @@ foreach ($loginList as $item) {
 
 
 	<script type="text/javascript">
-		function deleteCategory(id) {
-			var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+		function deleteAccount(id) {
+			var option = confirm('Are you sure you want to delete this account?')
 			if(!option) {
 				return;
 			}

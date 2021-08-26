@@ -1,11 +1,11 @@
 <?php
 require_once ('../../db/dbhelper.php');
     session_start();
-       $check = "select trangthai from login where taikhoan = '".$_SESSION['username']."'" ;
+       $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
  	$check = executeSingleResult($check);
  	if ($check != null) {
- 		$status = $check['trangthai'];
+ 		$status = $check['type'];
  	}
     if (!isset($_SESSION["username"]) || $status == 0 )
         {     header("Location:../../index.php");
@@ -16,7 +16,7 @@ require_once ('../../db/dbhelper.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Quản Lý Bài Đăng</title>
+	<title>Post Management</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="shortcut icon" type="image/ico" href="../icon/logo.ico">
@@ -54,31 +54,33 @@ require_once ('../../db/dbhelper.php');
 	<ul class="nav nav-tabs">
 
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Quản Lý Bài Đăng</a>
+	    <a class="nav-link active" href="#">Post Management</a>
 	  </li>
 	  	  <li class="nav-item">
-	    <a class="nav-link" href="../account/">Quản Lý Tài Khoản</a>
+	    <a class="nav-link" href="../account/">Account Management</a>
 	  </li>
 	</ul>
 
 	<div class="container-fluid">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center">Quản Lý Bài Đăng</h2>
+				<h2 class="text-center">Post Management</h2>
 			</div>
 			<div class="panel-body">
 				<a href="add.php">
-					<button class="btn btn-success" style="margin-bottom: 15px;">Đăng Bài Mới</button>
+					<button class="btn btn-success" style="margin-bottom: 15px;">New post</button>
 				</a>
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th width="50px">STT</th>
-							<th>Tên Bài</th>
-							<th>Hình Ảnh</th>
-							<th>Ngày Đăng</th>
-							<th>Giới Thiệu</th>
-							<th>Trạng Thái</th>
+							<th width="50px">Numbers</th>
+							<th>Name </th>
+							<th>Thumbnail</th>
+							<th width="200px">Date Posted</th>
+							<th width="300px">Introduce</th>
+							<th >Posted by</th>
+							<th width="200px">Status</th>
+							
 							<!-- <td>Thao tác</td> -->
 							<!-- <th width="50px"></th>
 							<th width="50px"></th> -->
@@ -109,13 +111,20 @@ $postList = executeResult($sql);
 $index = ($page*10)-9 ;
 $show  = '';
 foreach ($postList as $item) {
-if($item["trangthai"] == 0)
+
+	$poster 	= "select user_name from user where id = " .$item['id_user'];
+	$get_name   = executeSingleResult($poster);
+	if ($get_name != null) {
+		$get_name = $get_name['user_name'];
+	}
+
+if($item["status"] == 0)
 {
-	$show1  = "Đã Đăng Tải";
+	$show1  = "Posted";
 }
 else
 {
-	$show2  = "Chờ xét duyệt";
+	$show2  = "Waiting for confirm";
 }
 $a='../../';
 $b=" ".$item["thumbnail"];
@@ -129,43 +138,48 @@ else{
 	<tr>
 				<td><?=($index++)?></td>
 				<td width="350px"><?=$item['name']?></td>
-				<td><img src="<?=$item['thumbnail']?>" style="max-width: 100px"/></td>
+				<td><img src="<?=$item['thumbnail']?>" style="width: 100px;height :80px"/></td>
 						 
 				<td><?=$item['create_date']?></td>
-				<td width="350px"><?=$item['intro']?></td>
+				<td width="450px"><?=$item['intro']?></td>
 
-				 <?php if($item["trangthai"]==0){ ?>
+
+				<td width="130px"><?=$get_name?></td>
+
+
+				 <?php if($item["status"]==0){ ?>
 				<td class="text-primary"><?=($show1)?></td>
 				<?php } ?>
 
 
-				 <?php if($item["trangthai"]==1){ ?>
+				 <?php if($item["status"]==1){ ?>
 				<td class="text-success"><?=($show2)?></td>
 				<?php } ?>
 
 
 
-				 <?php if($item["trangthai"]==1){ ?>
+				 <?php if($item["status"]==1){ ?>
 				<td>
 				<a href="confirm.php?id=<?=$item['id']?>">
-				<button class="btn btn-success">Duyệt bài</button></a>
+				<button class="btn btn-success">Confirm</button></a>
 				</td>
 				<?php } ?>
 
+				
 
 
-				<?php if($item["trangthai"]==0){ ?>
+				<?php if($item["status"]==0){ ?>
 					<td>
 				<a href="confirm.php?id=<?=$item['id']?>">
-				<button class="btn btn-primary">Gỡ Bài</button></a>
+				<button class="btn btn-primary">Remove</button></a>
 				</td>
 					<?php } ?> 
 				<td>
 				<a href="add.php?id=<?=$item['id']?>">
-				<button class="btn btn-warning">Sửa</button></a>
+				<button class="btn btn-warning">Update</button></a>
 				</td>
 				<td>
-				<button class="btn btn-danger" onclick="deleteProduct(<?=$item['id']?>)">Xoá</button>
+				<button class="btn btn-danger" onclick="deleteProduct(<?=$item['id']?>)">Delete</button>
 				</td>
 			</tr>
 <?php } ?>

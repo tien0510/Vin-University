@@ -41,7 +41,7 @@
 }
 .xemthem{
     width: 80%;
-    height: 74%;
+    height: 66%;
     background-color: #00000054;
     position: absolute;
     text-align: center;
@@ -88,7 +88,9 @@
 .thumb img{
     border-radius: 13px;
     position: absolute;
-    width: 100%;
+    width: 356.75px;
+    height: 264.25px;
+
 
 }
 .pagination{
@@ -180,22 +182,22 @@
     }
     50%{
          opacity: 1;
-        height: 74%;
+        height: 66%;
     }
     60%{
         
-        height: 50%;
+        height: 45%;
     }
     70%{
-        height: 74%;
+        height: 66%;
     }
     80%{
-        height: 60%;
+        height: 52%;
     }
     90%{
-        height: 74%;
+        height: 66%;
     }
     100% {
-      height: 74%;
+      height: 66%;
     }
 }

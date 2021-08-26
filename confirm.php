@@ -10,10 +10,10 @@ require_once ('db/dbhelper.php');
 
 if (isset($_GET['id'])) {
 	$id      = $_GET['id'];
-	$sql     = 'select trangthai from directory where id = '.$id;
+	$sql     = 'select status from directory where id = '.$id;
 	$ress    = executeSingleResult($sql);
-	if ($ress['trangthai'] == 0) {
-		$convert  = 'update directory set trangthai = 1 where id = '.$id;
+	if ($ress['status'] == 0) {
+		$convert  = 'update directory set status = 1 where id = '.$id;
 	}
 	execute($convert);
 

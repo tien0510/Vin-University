@@ -10,7 +10,7 @@ require_once ('db/dbhelper.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Quản Lý Bài Đăng</title>
+	<title>Post Management</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="shortcut icon" type="image/ico" href="../icon/logo.ico">
@@ -28,25 +28,25 @@ require_once ('db/dbhelper.php');
 	<div class="container-fluid">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center">Quản Lý Bài Đăng</h2>
+				<h2 class="text-center">Post Management</h2>
 			</div>
 
 			<div class="panel-body">
 				<a href="post.php">
-					<button class="btn btn-success" style="margin-bottom: 15px;">Đăng Bài Mới</button>
+					<button class="btn btn-success" style="margin-bottom: 15px;">New Post</button>
 				</a>
 				<a href="directory.php">
-					<button class="btn btn-warning" style="margin-bottom: 15px;margin-left : 15px">Trở Về</button>
+					<button class="btn btn-warning" style="margin-bottom: 15px;margin-left : 15px">Return</button>
 				</a>
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th width="50px">STT</th>
-							<th>Tên Bài</th>
-							<th>Hình Ảnh</th>
-							<th>Ngày Đăng</th>
-							<th>Giới Thiệu</th>
-							<th>Trạng Thái</th>
+							<th width="50px">Numbers</th>
+							<th>Name</th>
+							<th>Thumbnail</th>
+							<th>Date Posted</th>
+							<th>Introduce</th>
+							<th>Status</th>
 							<!-- <td>Thao tác</td> -->
 							<!-- <th width="50px"></th>
 							<th width="50px"></th> -->
@@ -55,7 +55,7 @@ require_once ('db/dbhelper.php');
 					<tbody>
 <?php
 
-$id_now = ' select id from login where taikhoan = "'.$_SESSION['username'].'"';
+$id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
 $id     = executeSingleResult($id_now);
 if ($id != null) {
 	$id = $id['id'];
@@ -68,13 +68,13 @@ $postList = executeResult($sql);
 $index = 1;
 $show  = '';
 foreach ($postList as $item) {
-if($item["trangthai"] == 0)
+if($item["status"] == 0)
 {
-	$show1  = "Đã Đăng Tải";
+	$show1  = "Posted";
 }
 else
 {
-	$show2  = "Chờ xét duyệt";
+	$show2  = "Waiting for confirm";
 }
   $a='../../';
   $b=" ".$item["thumbnail"];
@@ -95,34 +95,34 @@ else
 				<td><?=$item['create_date']?></td>
 				<td width="350px"><?=$item['intro']?></td>
 
-				 <?php if($item["trangthai"]==0){ ?>
+				 <?php if($item["status"]==0){ ?>
 				<td class="text-primary"><?=($show1)?></td>
 				<?php } ?>
 
 
-				 <?php if($item["trangthai"]==1){ ?>
+				 <?php if($item["status"]==1){ ?>
 				<td class="text-success"><?=($show2)?></td>
 				<?php } ?>
 
 
 
-				 <?php if($item["trangthai"]==1){ ?>
+				 <?php if($item["status"]==1){ ?>
 				<td style="width : 150px">
-				<span  class="text-success">Chờ xét duyệt</span>
+				<span  class="text-success">Waiting for confirm</span>
 				</td>
 				<?php } ?>
 
 
 
-				<?php if($item["trangthai"]==0){ ?>
+				<?php if($item["status"]==0){ ?>
 					<td>
 				<a href="confirm.php?id=<?=$item['id']?>">
-				<button class="btn btn-primary">Gỡ Bài</button></a>
+				<button class="btn btn-primary">Remove</button></a>
 				</td>
 					<?php } ?> 
 				<td>
 				<a href="post.php?id=<?=$item['id']?>">
-				<button class="btn btn-warning">Sửa</button></a>
+				<button class="btn btn-warning">Update</button></a>
 				</td>
 				
 			</tr>
