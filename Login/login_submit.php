@@ -9,7 +9,7 @@
 			$password  	   = $_POST["password"] ;
 
 			$verf		= "select password from user where user_name ='$username' ";
-			$verify  = executeSingleResult($verf);
+			$verify  = select_one($verf);
 			if ($verify != null) {
 				$v = $verify['password'];
 			}else{
@@ -26,8 +26,8 @@
 			if ($check) {
 
 			$sql		= "select * from user where user_name ='$username'";
-			$stt 		= executeSingleResult($sql);
-			$user 		= execute($sql); 
+			$stt 		= select_one($sql);
+			$user 		= select($sql); 
 			if ( $stt != null) {
 				$status = $stt['type'];
 			}			

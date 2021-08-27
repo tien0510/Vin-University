@@ -2,7 +2,7 @@
  // session_start();
   require_once('db/dbhelper.php');
   //   $sql_total = "select * from carousel_multiple ";
-  // $index     = execute($sql_total);
+  // $index     = select($sql_total);
   // $num_row   = mysqli_num_rows($index);
   // print($num_row);
   // exit();
@@ -72,9 +72,9 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
 <?php  
   $OFFSET = 0 ;
   $sql       = "select * from carousel_multiple order by id ASC LIMIT 4 OFFSET ".$OFFSET." ";// lấy 4 bản ghi đầu tiên offset từ 0(thứ tự 1)
-  $values    = executeResult($sql);
+  $values    = select_list($sql);
   $sql_total = "select * from carousel_multiple ";
-  $index     = execute($sql_total);
+  $index     = select($sql_total);
   $num_row   = mysqli_num_rows($index);
 
   foreach ($values as $value) { ?>
@@ -86,7 +86,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                         <div class="row">
                             <?php 
                           $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
-                          $key    = executeSingleResult($block);
+                          $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
                             $a='../../';
@@ -118,7 +118,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                         <div class="box-info "  style="">
                            <?php 
                           $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
-                          $key    = executeSingleResult($block);
+                          $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
                             $a='../../';
@@ -149,7 +149,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                         <div class="row">
                           <?php 
                           $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
-                          $key    = executeSingleResult($block);
+                          $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
                             $a='../../';
@@ -182,7 +182,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                         <?php 
                          
                           $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
-                          $key    = executeSingleResult($block);
+                          $key    = select_one($block);
                           if ($key!= null) {
                             $name  = $key['name'];
                             $a='../../';

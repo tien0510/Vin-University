@@ -16,7 +16,7 @@
 
 
 					$sql      = "select * from user where user_name = '$username'";
-					$old      = execute($sql);
+					$old      = select($sql);
 
 				if( mysqli_num_rows($old) > 0){
 					echo "<script>
@@ -30,7 +30,7 @@
 					$sql="insert into user(user_name,password) values('$username','$password')";
 					// print($sql);
 					// exit();
-					execute($sql);
+					select($sql);
 
 					echo "<script>
 					      alert('Successful account registration !!!!!');

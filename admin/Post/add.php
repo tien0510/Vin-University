@@ -4,13 +4,13 @@ require_once ('../../db/dbhelper.php');
 		$create = date('Y-m-d');
     session_start();
      $id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
-		$id_user     = executeSingleResult($id_now);
+		$id_user     = select_one($id_now);
 		if ($id_user != null) {
 			$id_user = $id_user['id'];
 		}
       $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}
@@ -59,7 +59,7 @@ if (!empty($_POST)) {
 			$sql = 'update directory set name = "'.$title.'", thumbnail = "'.$thumbnail.'", intro = "'.$mota.'", overview = "'.$content.'", create_date = "'.$create.'", status = '.$status.' where id = '.$id;
 		}
 
-			 execute($sql);
+			 select($sql);
 
 
 		// print($sql);
@@ -73,7 +73,7 @@ if (!empty($_POST)) {
 if (isset($_GET['id'])) {
 	$id      = $_GET['id'];
 	$sql     = 'select * from directory where id = '.$id;
-	$post = executeSingleResult($sql);
+	$post = select_one($sql);
 	if ($post != null) {
 		$title       = $post['name'];
 		$status 	 = $post['status'];

@@ -1,14 +1,14 @@
 <?php
 require_once ('config.php');
 // $con = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
-function execute($sql) {
+function select($sql) {
 	$con = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$result = mysqli_query($con, $sql);
 	mysqli_close($con);
 	return $result;
 }
 
-function executeResult($sql) {
+function select_list($sql) {
 	$con = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$result = mysqli_query($con, $sql);
 	$data   = [];
@@ -20,7 +20,7 @@ function executeResult($sql) {
 	return $data;
 }
 
-function executeSingleResult($sql) {
+function select_one($sql) {
 	$con = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
 	$result = mysqli_query($con, $sql);
 	$row    = mysqli_fetch_array($result, 1);

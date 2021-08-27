@@ -13,7 +13,7 @@ if (!empty($_POST)) {
 					$id = $_POST['id'];
 
 					$sql = 'delete from user where id = '.$id;
-					execute($sql);
+					select($sql);
 				}
 				break;
 		

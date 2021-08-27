@@ -11,11 +11,11 @@ require_once ('db/dbhelper.php');
 if (isset($_GET['id'])) {
 	$id      = $_GET['id'];
 	$sql     = 'select status from directory where id = '.$id;
-	$ress    = executeSingleResult($sql);
+	$ress    = select_one($sql);
 	if ($ress['status'] == 0) {
 		$convert  = 'update directory set status = 1 where id = '.$id;
 	}
-	execute($convert);
+	select($convert);
 
 	 echo "<script>
       alert('Thao Tác Thành Công');

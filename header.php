@@ -4,7 +4,7 @@
 if (isset($_SESSION['username'])) {
 	 $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}

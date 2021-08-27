@@ -56,14 +56,14 @@ require_once ('db/dbhelper.php');
 <?php
 
 $id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
-$id     = executeSingleResult($id_now);
+$id     = select_one($id_now);
 if ($id != null) {
 	$id = $id['id'];
 }
 $sql          = 'select * from directory where id_user = "'.$id.'" ';
 // print($sql);
 // exit();
-$postList = executeResult($sql);
+$postList = select_list($sql);
 
 $index = 1;
 $show  = '';

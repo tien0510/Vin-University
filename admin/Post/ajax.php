@@ -11,7 +11,7 @@ if (!empty($_POST)) {
 					$id = $_POST['id'];
 
 					$sql = 'delete from directory where id = '.$id;
-					execute($sql);
+					select($sql);
 				}
 				break;
 		}

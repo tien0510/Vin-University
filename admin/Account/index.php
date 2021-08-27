@@ -3,7 +3,7 @@ require_once ('../../db/dbhelper.php');
     session_start();
        $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}
@@ -75,7 +75,7 @@ require_once ('../../db/dbhelper.php');
 <?php
 //Lay danh sach tai khoan tu database
 $sql          = 'select * from user';
-$userList = executeResult($sql);
+$userList = select_list($sql);
 
 $index = 1;
 foreach ($userList as $item) {

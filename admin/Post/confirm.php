@@ -5,7 +5,7 @@ require_once ('../../db/dbhelper.php');
     session_start();
     $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}
@@ -17,14 +17,14 @@ require_once ('../../db/dbhelper.php');
 if (isset($_GET['id'])) {
 	$id      = $_GET['id'];
 	$sql     = 'select status from directory where id = '.$id;
-	$ress    = executeSingleResult($sql);
+	$ress    = select_one($sql);
 	if ($ress['status'] == 0) {
 		$convert  = 'update directory set status = 1 where id = '.$id;
 	}
 	else{
 		$convert  = 'update directory set status = 0 where id = '.$id;
 	}
-	execute($convert);
+	select($convert);
 
 	 echo "<script>
       alert('Thao Tác Thành Công');

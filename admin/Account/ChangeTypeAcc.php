@@ -4,7 +4,7 @@ require_once ('../../db/dbhelper.php');
 if (isset($_GET['id'])) {
 	$id       = $_GET['id']; 
 	$sql      = 'select type from user where id = '.$id;
-	$type = executeSingleResult($sql);
+	$type = select_one($sql);
 	if ($type != null) {
 		$type_acc = $type['type'];
 	}
@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
 	}
 	// print($change);
 	// exit();
-	execute($change);
+	select($change);
 	header('Location:index.php');
 	die();
 	}

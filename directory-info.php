@@ -27,7 +27,7 @@
 
       $sql =  " select * from directory where id =".$_GET['id']." ";
 
-      $directory =  executeSingleResult($sql) ;
+      $directory =  select_one($sql) ;
       if($directory != null) {
         
       $name = $directory['name'];

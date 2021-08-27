@@ -32,7 +32,7 @@
                            <form action="">
                                <input type="text" placeholder="Your name">
                                <input type="text" placeholder="Phone Number">
-                               <input type="email" placeholder="Email">
+                               <input type="text" placeholder="Email"  >
                                <input class="content-input" type="text" placeholder="What do you want to know ">
                                <p>
                                 By submitting this request you are agreeing to be contacted by VinUniversity and being included on a mailing/contact list. We will never sell or disclose your information to a third party without your prior permission.

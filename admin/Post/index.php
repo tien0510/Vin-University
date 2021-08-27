@@ -3,7 +3,7 @@ require_once ('../../db/dbhelper.php');
     session_start();
        $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}
@@ -101,19 +101,19 @@ require_once ('../../db/dbhelper.php');
   // print($sql_total);
   // exit();
 
-   $total_s       = execute($sql_total);
+   $total_s       = select($sql_total);
    $total_s       = mysqli_num_rows($total_s);
    $total_page    = ceil($total_s/$numberpage);
 
 
-$postList = executeResult($sql);
+$postList = select_list($sql);
 
 $index = ($page*10)-9 ;
 $show  = '';
 foreach ($postList as $item) {
 
 	$poster 	= "select user_name from user where id = " .$item['id_user'];
-	$get_name   = executeSingleResult($poster);
+	$get_name   = select_one($poster);
 	if ($get_name != null) {
 		$get_name = $get_name['user_name'];
 	}

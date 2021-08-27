@@ -79,12 +79,12 @@
   // print($sql_total);
   // exit();
 
-   $total_s       = execute($sql_total);
+   $total_s       = select($sql_total);
    $total_s       = mysqli_num_rows($total_s); // tổng bản ghi
    $total_page    = ceil($total_s/$numberpage); // chia ra số trang làm tròn lên
    // print($total_page);
 
-  $datas = executeResult($sql);
+  $datas = select_list($sql);
 
 
  ?>

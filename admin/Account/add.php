@@ -3,7 +3,7 @@
     session_start();
     $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
 
- 	$check = executeSingleResult($check);
+ 	$check = select_one($check);
  	if ($check != null) {
  		$status = $check['type'];
  	}
@@ -36,10 +36,10 @@ if (!empty($_POST)) {
 	if (!empty($name)) {
 		//Luu vao database
 		if ($id == '') {
-			if( mysqli_num_rows(execute($exist)) < 1) {
+			if( mysqli_num_rows(select($exist)) < 1) {
 			
 				$sql = 'insert into user(user_name, password) values("'.$name.'", "'.$mk.'")';
-				execute($sql);
+				select($sql);
 				header('Location: index.php');
 				die();
 			}
@@ -55,7 +55,7 @@ if (!empty($_POST)) {
 		}
 		 else {
 			$sql = 'update user set user_name = "'.$name.'", password = "'.$mk.'", type = '.$type_acc.' where id = '.$id;
-			execute($sql);
+			select($sql);
 			header('Location: index.php');
 			die();
 		}
@@ -67,7 +67,7 @@ if (!empty($_POST)) {
 if (isset($_GET['id'])) {
 	$id       = $_GET['id']; 
 	$sql      = 'select * from user where id = '.$id;
-	$user = executeSingleResult($sql);
+	$user = select_one($sql);
 	if ($user != null) {
 		$name 	  = $user['user_name'];
 		$type_acc = $user['type'];
