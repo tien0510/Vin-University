@@ -1,17 +1,8 @@
 <?php
-	require_once ('../../db/dbhelper.php');
-    session_start();
-    $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
-
- 	$check = select_one($check);
- 	if ($check != null) {
- 		$status = $check['type'];
- 	}
-    if (!isset($_SESSION["username"]) || $status == 0 )
-        {     header("Location:../../index.php");
-            // header("Location:index.php");
-        }
-$id = $name  = $mk =  $type_acc = '';
+session_start();
+require_once ('../../db/dbhelper.php');
+require_once('../check_admin.php');
+$id = $name  = $password =  $type_acc = '';
 if (!empty($_POST)) {
 	if (isset($_POST['user_name'])) {
 		$name = $_POST['user_name'];
@@ -23,7 +14,7 @@ if (!empty($_POST)) {
 	}
 
 	if (isset($_POST['password'])) {
-		$mk = password_hash(($_POST['password']), PASSWORD_DEFAULT);
+		$password = password_hash(($_POST['password']), PASSWORD_DEFAULT);
 	}
 
 	if (isset($_POST['type'])) {
@@ -38,7 +29,7 @@ if (!empty($_POST)) {
 		if ($id == '') {
 			if( mysqli_num_rows(select($exist)) < 1) {
 			
-				$sql = 'insert into user(user_name, password) values("'.$name.'", "'.$mk.'")';
+				$sql = 'insert into user(user_name, password, type) values("'.$name.'", "'.$password.'" , '.$type_acc.')';
 				select($sql);
 				header('Location: index.php');
 				die();
@@ -54,7 +45,7 @@ if (!empty($_POST)) {
 			}
 		}
 		 else {
-			$sql = 'update user set user_name = "'.$name.'", password = "'.$mk.'", type = '.$type_acc.' where id = '.$id;
+			$sql = 'update user set user_name = "'.$name.'", password = "'.$password.'", type = '.$type_acc.' where id = '.$id;
 			select($sql);
 			header('Location: index.php');
 			die();
@@ -97,10 +88,13 @@ if (isset($_GET['id'])) {
 	<ul class="nav nav-tabs">
 	  
 	  <li class="nav-item">
-	    <a class="nav-link" style="color: #BCFCC1;border-right: 2px solid white;font-weight:bold" href="../Post/">Post Management</a>
+	    <a class="nav-link" style="color: #BCFCC1;border-right: 2px solid white;font-weight:bold" href="../Directory/">Directory Management</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Account/">Account Management</a>
+	  </li>
+	   <li class="nav-item">
+	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Post/">Post Management</a>
 	  </li>
 	</ul>
 
@@ -122,14 +116,14 @@ if (isset($_GET['id'])) {
 					<div class="form-group">
 					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="password">Password</label>
 					  
-					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="password" name="password" value="<?=$mk?>" >
+					  <input style="text-align:center;font-size : 20px;" required="true" type="text" class="form-control" id="password" name="password" value="<?=$password?>" >
 					</div>
 					<div class="form-group">
 					  <label style="margin-left:30% ;color:#F0F811;font-weight: 600; font-size : 30px" for="password">Account Type</label>
 					  
 					  <select style="padding-left: 42% ;font-size : 20px;" required="true" type="text" class="form-control" id="type" name="type" value="<?=$type_acc?>" >
-					  	<option   value=0 selected><p >Guess</p></option>
-					  	<option  value=1 <?php if( $type_acc!="" && $type_acc==1) echo "selected"?> >Admin</option>	 
+					  	<option  value="1" <?php if( $type_acc!="" && $type_acc==1) echo "selected"?> >Admin</option>
+					  	<option   value="0" <?php if( $type_acc!="" && $type_acc==0) echo "selected"?>>Guess</option>	 
 					  </select>
 					</div>
 

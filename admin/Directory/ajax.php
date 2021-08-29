@@ -10,7 +10,7 @@ if (!empty($_POST)) {
 				if (isset($_POST['id'])) {
 					$id = $_POST['id'];
 
-					$sql = 'delete from post where id = '.$id;
+					$sql = 'delete from directory where id = '.$id;
 					select($sql);
 				}
 				break;

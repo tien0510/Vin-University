@@ -74,7 +74,7 @@
 
 
 		<section class="recruitment-detail">
-              <div class="container col-12">
+              <div class="container col-11">
                <article class="recruitment-detail-article post-detail">
                	<p> <?=$overview?> </p>
 					

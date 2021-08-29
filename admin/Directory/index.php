@@ -3,16 +3,8 @@ session_start();
 require_once ('../../db/dbhelper.php');
 require_once('../check_admin.php');
        $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
-$where = "where id_category is not null";
-if (isset($_GET['id_category'])) {
-	if ($_GET['id_category']=="all") {
-		$where = "where id_category is not null";
-	}else{
-		$id_ca = $_GET['id_category'];
-		$where = "where id_category = " .$id_ca ;
-		
-	}
-}
+$where = "where status is not null";
+// $stt ="All";
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,40 +47,34 @@ if (isset($_GET['id_category'])) {
 	<ul class="nav nav-tabs">
 
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Post Management</a>
+	    <a class="nav-link active" href="#">Directory Management</a>
 	  </li>
 	  	  <li class="nav-item">
 	    <a class="nav-link" href="../account/">Account Management</a>
 	  </li>
 	   <li class="nav-item">
-	    <a class="nav-link "  href="../Directory/">Directory Management</a>
+	    <a class="nav-link "  href="../Post/">Post Management</a>
 	  </li>
 	</ul>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h2 class="text-center">Post Management</h2>
+				<h2 class="text-center">Directory Management</h2>
 			</div>
 			<div class="panel-body">
 				<a href="add.php">
-					<button class="btn btn-success" style="margin-bottom: 15px;">New Post</button>
+					<button class="btn btn-success" style="margin-bottom: 15px;">Add Directory</button>
 				</a>
 				<form action="" method="GET">
 					<div class="select" style=" margin-top : -50px; margin-left:150px;">
-				<select class="btn btn-primary"  name="id_category" value="<?=$dv?>" style="width: 200px;margin-left: 500px  ; " >
+				<select class="btn btn-primary"  name="status" value="<?=$dv?>" style="width: 200px;margin-left: 500px  ; " >
 							
 
-							<option value="all">Select category</option>
-							<?php 
-
-					  		$sql = "select * from category " ;
-					  		$variable = select_list($sql);
-					  		foreach ($variable as  $value) { ?>
-					  				
-					  		<option value="<?=$value['id']?>" <?php if (isset($id_ca) && $id_ca ==$value['id'] ){ echo "selected";} ?>><?=$value['name_category']?></option>
-
-					  	<?php } ?>
+							<option  selected="true" >Select status</option>
+							<option value="All"<?php if (isset($_GET['status']) && $_GET['status'] == "All" ) {echo "selected";}?>>All</option>
+							<option value="0" <?php if (isset($_GET['status']) && $_GET['status'] == "0" ) {echo "selected";}?>>Posted</option>
+							<option value="1" <?php if (isset($_GET['status']) && $_GET['status'] == "1" ) {echo "selected";}?>>Waiting for confirm</option>
 
 					
 					</select>
@@ -102,7 +88,10 @@ if (isset($_GET['id_category'])) {
 							<th width="50px">Numbers</th>
 							<th>Name </th>
 							<th>Thumbnail</th>
-							<th width="200px">Category</th>
+							<th width="200px">Date Posted</th>
+							<th width="300px">Introduce</th>
+							<th >Posted by</th>
+							<th width="200px">Status</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -110,16 +99,47 @@ if (isset($_GET['id_category'])) {
 
 
 
-  
-$sql = "select * from post ".$where."";
+  $numberpage = !empty($_GET['per_page'])?$_GET['per_page'] : 10 ;// số lượng trên 1 trang
+  $page =  !empty($_GET['page'])?$_GET['page']:1 ;      // trang hiện tại 
+  $OFFSET = ($page - 1)*$numberpage; // lấy offset từ trang tương ứng
+  if (isset($_GET['status'])) {
+  		if ($_GET['status'] == "All"){
+  			$where = "where status is not null";
+  				;
+  		}else if ($_GET['status'] == "0" ) {
+  			 $where = "where status = 0";
+  				
+  		}else if ($_GET['status'] == "1" ) {
+  			$where = "where status = 1";
+  				
+  }}
+  $sql= "select * from directory ".$where." order by id ASC LIMIT " .$numberpage." OFFSET ".$OFFSET."";
+  $sql_total      = "select * from directory  " .$where;
+   $total_s       = select($sql_total);
+   $total_s       = mysqli_num_rows($total_s);
+   $total_page    = ceil($total_s/$numberpage);
+
+
 $postList = select_list($sql);
-$index =1;
+
+$index = ($page*10)-9 ;
+$show  = '';
 foreach ($postList as $item) {
-	$cate = " select name_category from category where id = " .$item['id_category'];
-	$category = select_one($cate);	
-	if ($category != null) {
-		$category = $category['name_category'];
+
+	$poster 	= "select user_name from user where id = " .$item['id_user'];
+	$get_name   = select_one($poster);
+	if ($get_name != null) {
+		$get_name = $get_name['user_name'];
 	}
+
+if($item["status"] == 0)
+{
+	$show1  = "Posted";
+}
+else
+{
+	$show2  = "Waiting for confirm";
+}
 $a='../../';
 $b=" ".$item["thumbnail"];
 if(strpos($b,$a)){
@@ -132,9 +152,42 @@ else{
 	<tr>
 				<td><?=($index++)?></td>
 				<td width="350px"><?=$item['name']?></td>
-				<td><img src="<?=$item['thumbnail']?>" style="width: 100px;height :80px"/>
+				<td><img src="<?=$item['thumbnail']?>" style="width: 100px;height :80px"/></td>
+						 
+				<td><?=$item['create_date']?></td>
+				<td width="450px"><?=$item['intro']?></td>
+
+
+				<td width="130px"><?=$get_name?></td>
+
+
+				 <?php if($item["status"]==0){ ?>
+				<td class="text-primary"><?=($show1)?></td>
+				<?php } ?>
+
+
+				 <?php if($item["status"]==1){ ?>
+				<td class="text-success"><?=($show2)?></td>
+				<?php } ?>
+
+
+
+				 <?php if($item["status"]==1){ ?>
+				<td>
+				<a href="confirm.php?id=<?=$item['id']?>">
+				<button class="btn btn-success">Confirm</button></a>
 				</td>
-				<td width="350px"><?=$category?></td>
+				<?php } ?>
+
+				
+
+
+				<?php if($item["status"]==0){ ?>
+					<td>
+				<a href="confirm.php?id=<?=$item['id']?>">
+				<button class="btn btn-primary">Remove</button></a>
+				</td>
+					<?php } ?> 
 				<td>
 				<a href="add.php?id=<?=$item['id']?>">
 				<button class="btn btn-warning">Update</button></a>
@@ -151,7 +204,7 @@ else{
 			</div>
 		</div>
 	</div>
-
+	<?php require_once('pagination.php'); ?>
 	<script type="text/javascript">
 		function deleteProduct(id) {
 			var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')

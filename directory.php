@@ -2,7 +2,7 @@
 
   session_start();
   require_once('db/dbhelper.php');
-  $wh = ""; 
+  $where = ""; 
  ?>
 
 <!DOCTYPE html>
@@ -47,11 +47,11 @@
          <?php 
         if (isset($_GET['searchText'])) {
            $searchText= $_GET['searchText'];
-           $wh = " where name like '%".$searchText."%'  and status = 0 ";
+           $where = " where name like '%".$searchText."%' or intro like '%".$searchText."%'  and status = 0 ";
          }
            else{
              $searchText="";
-             $wh = " where name like '%".$searchText."%' and status = 0 ";
+             $where = " where name like '%".$searchText."%' or intro like '%".$searchText."%' and status = 0 ";
 
            }
             ?>
@@ -69,12 +69,12 @@
 
 <?php 
 
-  $numberpage = !empty($_GET['per_page'])?$_GET['per_page'] : 9 ;// số lượng trên 1 trang
+  $numberpage = !empty($_GET['per_page'])?$_GET['per_page'] : 12 ;// số lượng trên 1 trang
   $page =  !empty($_GET['page'])?$_GET['page']:1 ;      // trang hiện tại 
   $OFFSET = ($page - 1)*$numberpage; // lấy offset từ trang tương ứng
 
-  $sql= "select * from directory ".$wh." order by id ASC LIMIT " .$numberpage." OFFSET ".$OFFSET."";
-  $sql_total      = "select * from directory ".$wh."  ";
+  $sql= "select * from directory ".$where." order by id ASC LIMIT " .$numberpage." OFFSET ".$OFFSET."";
+  $sql_total      = "select * from directory ".$where."  ";
   // print($sql);
   // print($sql_total);
   // exit();

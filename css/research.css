@@ -1,0 +1,76 @@
+.container1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 80%;
+    margin: 0 auto;
+}
+.title{
+    font-size: 24px;
+    font-weight: 200;
+}
+.title button{
+    text-transform: uppercase;
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid gb(78, 78, 219);
+    cursor: pointer;
+    background-color: rgb(78, 78, 219);
+    transition: all 1s;
+    outline: none;
+}
+.title button a{
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+}
+.title button:hover{
+    background-color: #fff;
+}
+.title button:hover a{
+    color: #000;
+}
+.grid-item{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.grid-content{
+    padding: 10px;
+    width: 100%;
+}
+.grid-content h2{
+    font-size: 28px;
+}
+.grid-img{
+    height: 100%;
+    overflow: hidden;
+}
+.grid-img img{
+    max-height: 406.84px;
+    width: auto;
+    
+}
+.grid-content p{
+    font-weight: 400;
+}
+.grid-content ul li{
+    font-weight: 200;
+}
+.grid-end{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+}
+.end-img{
+    width: 100%;
+}
+.end-content{
+    width: 100%;
+}
+.end-item{
+    margin: auto 15px;
+}
+.end-item .end-img img{
+    width: 100%;
+}.content{
+    margin-bottom: 50px;
+}

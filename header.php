@@ -74,7 +74,14 @@ if (isset($_SESSION['username'])) {
 						</div>
 					</li>
 					<li class="boder">
-						<a href="#">Academics</a>
+						 <?php 
+
+
+        $sql = "select * from category where name_category = 'academic' ";
+        $academic = select_one($sql);
+        if ($academic != null) {?>
+						<a href="category.php?id=<?=$academic['id']?>">Academics</a>
+					<?php }?>
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
@@ -105,7 +112,7 @@ if (isset($_SESSION['username'])) {
 						</div>
 					</li>
 					<li class="boder">
-						<a href="#">Research</a>
+						<a href="research.php">Research</a>
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
@@ -124,7 +131,14 @@ if (isset($_SESSION['username'])) {
 						</div>
 					</li>
 					<li class="boder">
-						<a href="#">Admissions & Aid</a>
+						<?php 
+
+
+        $sql = "select * from category where name_category = 'admission' ";
+        $admission = select_one($sql);
+        if ($admission != null) {?>
+						<a href="category.php?id=<?=$admission['id']?>">Admissions & Aid</a>
+					<?php }?>
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
@@ -219,24 +233,15 @@ if (isset($_SESSION['username'])) {
   <script type="text/javascript">
     window.onscroll = function ()
     {
-        
-      if (document.body.scrollTop > 10 || document.documentElement.scrollTop >10)
+      if (document.documentElement.scrollTop >10)
       {
-        console.log(document.documentElement.scrollTop);  
-
         document.getElementById("head_top").style.display = "none";
-        document.getElementById("head_bottom").style["boxShadow"] = " 0px 12px 9px -8px black";
-        document.getElementById("head_bottom").style["animation"] = " none ";
-
-        
-        
+        document.getElementById("head_bottom").style["boxShadow"] = " 0px 12px 9px -8px black";    
       } 
       else
       {
-        
         document.getElementById("head_top").style.display = "block";
         document.getElementById("head_bottom").style["boxShadow"] = "none";
-        
       }
     };
   </script> 

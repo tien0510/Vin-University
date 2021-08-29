@@ -3,8 +3,15 @@ session_start();
 require_once ('../../db/dbhelper.php');	
 require_once('../check_admin.php');	
     
+     $id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
+		$id_user     = select_one($id_now);
+		if ($id_user != null) {
+			$id_user = $id_user['id'];
+		}
+     date_default_timezone_set('Asia/Ho_Chi_Minh');		
+		$create = date('Y-m-d');
 
-$id =  $title = $thumbnail = $content = $category  = '';
+$id =  $title = $thumbnail = $content = $status =$vin_leader  = $mota = '';
 if (!empty($_POST)) {
 	if (isset($_POST['id'])) {
 		$id = $_POST['id'];
@@ -13,16 +20,27 @@ if (!empty($_POST)) {
 			$title = $_POST['name'];
 			$title = str_replace('"', '\\"', $title);
 		}
-	if (isset($_POST['category'])) {
-		$category = $_POST['category'];
+	if (isset($_POST['status'])) {
+		$status = $_POST['status'];
+	}
+	if (isset($_POST['vin_leader'])) {
+		$vin_leader = $_POST['vin_leader'];
+	}
+	if (isset($_POST['mota'])) {
+		$mota = $_POST['mota'];
+		$mota = str_replace('"', '\\"', $mota);
 	}
 	if (isset($_POST['thumbnail'])) {
 		$thumbnail = $_POST['thumbnail'];
 		$thumbnail = str_replace('"', '\\"', $thumbnail);
 	}
-	if (isset($_POST['content'])) {
-		$content = $_POST['content'];
+	if (isset($_POST['overview'])) {
+		$content = $_POST['overview'];
 		$content = str_replace('"', '\\"', $content);
+	}
+	if (isset($_POST['create_date'])) {
+		$create = $_POST['create_date'];
+	
 	}
 
 
@@ -30,10 +48,10 @@ if (!empty($_POST)) {
 		//Luu vao database
 		if ( (!isset($_GET['id'])) && $id == '') {
 
-			$sql = 'insert into post(name, thumbnail, content, id_category) values("'.$title.'", "'.$thumbnail.'", "'.$content.'", '.$category.')';
+			$sql = 'insert into directory(name, thumbnail, intro, overview, create_date, status, vin_leader,id_user) values("'.$title.'", "'.$thumbnail.'", "'.$mota.'", "'.$content.'", "'.$create.'", '.$status.', '.$vin_leader.','.$id_user.')';
 		} else {
 			$id      = $_GET['id'];
-			$sql = 'update post set name = "'.$title.'", thumbnail = "'.$thumbnail.'", content = "'.$content.'", id_category = '.$category.' where id = '.$id;
+			$sql = 'update directory set name = "'.$title.'", thumbnail = "'.$thumbnail.'", intro = "'.$mota.'", overview = "'.$content.'", create_date = "'.$create.'", status = '.$status.', vin_leader = '.$vin_leader.' where id = '.$id;
 		}
 
 			 select($sql);
@@ -44,10 +62,14 @@ if (!empty($_POST)) {
 
 if (isset($_GET['id'])) {
 	$id      = $_GET['id'];
-	$sql     = 'select * from post where id = '.$id;
+	$sql     = 'select * from directory where id = '.$id;
 	$post = select_one($sql);
 	if ($post != null) {
 		$title       = $post['name'];
+		$status 	 = $post['status'];
+		$vin_leader 	 = $post['vin_leader'];
+		$create    = $post['create_date'];
+		$mota        = $post['intro'];
 		$a='../../';
 		$b=" ".$post["thumbnail"];
 
@@ -57,9 +79,12 @@ if (isset($_GET['id'])) {
 		else{
 			$post["thumbnail"] = str_replace('images', '../../images',$post["thumbnail"]);
 		}
-		$id_cate = $post['id_category'];
+		
 		$thumbnail   = $post['thumbnail'];	
-		$content     = $post['content'];
+		// echo(strpos($b,$a));
+		// print($thumbnail);
+		// exit();
+		$content     = $post['overview'];
 		;
 	}
 }
@@ -67,7 +92,7 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add/Update Post</title>
+	<title>Add/Update Directory</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	         <link rel="stylesheet" type="text/css" href="add.css">
@@ -92,16 +117,16 @@ if (isset($_GET['id'])) {
 	    <a class="nav-link"  href="../account/">Account Management</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link active	" href="index.php">Post Management</a>
+	    <a class="nav-link active	" href="index.php">Directory Management</a>
 	  </li>
 	   <li class="nav-item">
-	    <a class="nav-link " href="../Directory/">Directory Management</a>
+	    <a class="nav-link " href="../Post/">Post Management</a>
 	  </li>
 	</ul>
 
 	
 
-				<h2 class="text-center">Add/Update Post</h2>
+				<h2 class="text-center">Add/Update Directory</h2>
 
 
 	<div class="container">
@@ -115,24 +140,46 @@ if (isset($_GET['id'])) {
             <hr>
             
 
-          <h2>Category</h2>
+          <h2>Status</h2>
             <div class="row">
-              <label for="" class="col-4">Category</label>
-              <select class="form-control" style="width: 200px; " name="category" id="category">					  	
-              <?php 
-
-					  		$sql = "select * from category " ;
-					  		$variable = select_list($sql);
-					  		foreach ($variable as  $value) { ?>
-					  				
-					  		<option value="<?=$value['id']?>"<?php if (isset($id_cate) && $id_cate ==$value['id']) { echo "selected";} ?>><?=$value['name_category']?></option>
-
-					  	<?php } ?>
+              <label for="" class="col-4">Status</label>
+              <select class="form-control" style="width: 200px; " name="status" id="status">					  	
+              <option  	value=0 selected>Post now</option>
+					  	<option  	value=1 <?php if($status==1) echo "selected"?>>Waiting for confirm</option>	 
 					  	 </select>
-					  	  
+					  	  <label for="" class="col-2" style=" margin-left : 50px">Vin-Leader</label>
+              <select class="form-control" style="width: 200px; " name="vin_leader" id="vin_leader">					  	
+              <option  	value=0 selected>No</option>
+					  	<option  	value=1 <?php if($vin_leader==1) echo "selected"?>>Yes</option>	 
+					  	 </select>
             </div>
 
             <hr>
+
+            <h2>Date of writing</h2>
+            <div class="row">
+              <label for="" class="col-4">Date</label>
+              <input  style="width: 200px;" type="date" name="create_date" id="create_date" min="0" value="<?=$create?>">
+              
+            </div>
+            
+           <hr>
+
+         
+          <div style="margin-left:0px;" id="contact">
+          <h2>Description</h2>
+
+          <div>
+            <textarea id="mota" name="mota" rows="10" cols="50" maxlength="4000" ><?=$mota?></textarea>
+          </div>
+
+
+
+
+        </div>
+
+
+
           </div>                    
     
             <hr>
@@ -151,8 +198,8 @@ if (isset($_GET['id'])) {
 
            <hr>
             <div class="form-group" style="background-color:  white;">
-          				  <label for="content" style="color: #a52a2a;">Content:</label>
-           				 <textarea class="form-control"  rows="6" name="content" id="content"?><?=$content?></textarea>
+          				  <label for="noidung" style="color: #a52a2a;">Content:</label>
+           				 <textarea class="form-control"  rows="6" name="overview" id="noidung"?><?=$content?></textarea>
           	</div>
 		</div>
 
@@ -176,7 +223,7 @@ if (isset($_GET['id'])) {
 
 		$(function() {
 			//doi website load noi dung => xu ly phan js
-			$('#content').summernote({
+			$('#noidung').summernote({
 			  height: 250
 			});
 		})

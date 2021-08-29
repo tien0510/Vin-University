@@ -1,21 +1,12 @@
 <?php
+session_start();
 require_once ('../../db/dbhelper.php');
-    session_start();
-       $check = "select type from user where user_name = '".$_SESSION['username']."'" ;
-
- 	$check = select_one($check);
- 	if ($check != null) {
- 		$status = $check['type'];
- 	}
-    if (!isset($_SESSION["username"]) || $status == 0 )
-        {     header("Location:../../index.php");
-            // header("Location:index.php");
-        }
+require_once('../check_admin.php');    
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Quản Lý Tài Khoản</title>
+	<title>Account Management</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="shortcut icon" type="image/ico" href="../icon/logo.ico">
@@ -36,10 +27,13 @@ require_once ('../../db/dbhelper.php');
 	<ul class="nav nav-tabs">
 	  
 	  <li class="nav-item">
-	    <a class="nav-link" href="../Post/">Post Management</a>
+	    <a class="nav-link" href="../Directory/">Directory Management</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link active" href="#">Account Management</a>
+	  </li>
+	   <li class="nav-item">
+	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Post/">Post Management</a>
 	  </li>
 
 	</ul>
@@ -66,7 +60,7 @@ require_once ('../../db/dbhelper.php');
 							<th width="50px" class="text-warning">Numbers</th>
 							<th class="text-warning"> Account Name</th>
 							<th class="text-warning"> Account Tpye</th>
-							<th class="text-warning"> Change Type Of Account</th>
+							<th class="text-warning"> Change account type</th>
 							<th width="50px"></th>
 							<th width="50px"></th>
 						</tr>

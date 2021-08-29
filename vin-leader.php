@@ -1,7 +1,7 @@
 <?php
  // session_start();
   require_once('db/dbhelper.php');
-  //   $sql_total = "select * from carousel_multiple ";
+  //   $sql_total = "select * from directory where vin_leader = 1 ";
   // $index     = select($sql_total);
   // $num_row   = mysqli_num_rows($index);
   // print($num_row);
@@ -15,10 +15,6 @@
 <div class="uiniversity-leader">
     <h2 style="color: #cd3c3f">Our University Leaders</h2>
       <div id="carousel-example-3" class="carousel slide carousel-fade" data-ride="carousel">
-        <!--Indicators-->
-      
-        <!--/.Indicators-->
-        <!--Slides-->
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
              <div class="row ">
@@ -33,6 +29,7 @@
                           <p >Vice Chairwoman of Vingroup JSC.<br>President of the University Council, VinUniversity<br>Distinguished Fellow, College of Business and Management</p>
                         </div></div>
                         </div>
+
                         <div class="row">
                         <div class="col-6 block3" >
                         <div class="box-info "  style="">
@@ -55,6 +52,7 @@ Professor, College of Business and Management</p>
 Professor, College of Engineering and Computer Science<br>Distinguished Fellow, College of Business and Management</p>
                         </div></div>
                       </div>
+
                       <div class="row">
                       <div class="col-6 block7" >
                       <div class="box-info "  style="">
@@ -71,13 +69,14 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
 
 <?php  
   $OFFSET = 0 ;
-  $sql       = "select * from carousel_multiple order by id ASC LIMIT 4 OFFSET ".$OFFSET." ";// lấy 4 bản ghi đầu tiên offset từ 0(thứ tự 1)
+  $sql       = "select * from directory where vin_leader = 1 order by id ASC LIMIT 4 OFFSET ".$OFFSET." ";// lấy 4 bản ghi đầu tiên offset từ 0(thứ tự 1)
   $values    = select_list($sql);
-  $sql_total = "select * from carousel_multiple ";
+  $sql_total = "select * from directory where vin_leader = 1 ";
   $index     = select($sql_total);
   $num_row   = mysqli_num_rows($index);
+  $total_slides = ceil($num_row/4);
 
-  foreach ($values as $value) { ?>
+for($num = 1 ; $num <= $total_slides; $num++ ) { ?>
 
           <div class="carousel-item ">
             <!--Mask color-->
@@ -85,7 +84,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                       <div class="col-6">
                         <div class="row">
                             <?php 
-                          $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
+                          $block = "select * from directory where vin_leader = 1 order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
                           $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
@@ -100,16 +99,17 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                             }
                             $thumbnail = $key['thumbnail'];
                             $txt       = $key['intro'];
+                            $id       = $key['id'];
                           }
                           
                            $OFFSET = $OFFSET + 1 ;
                           
 
                            ?>
-          <div class="col-6 block1" ><img src="<?=$thumbnail?>"></div>
+          <div class="col-6 block1" ><a href="directory-info.php?id=<?=$id?>"><img src="<?=$thumbnail?>"></a></div>
                         <div class="col-6 block2" >
                         <div class="box-info "  style="">
-             <h2 ><a href="#" tabindex="-1"><?=$name?></a></h2>
+             <h2 ><a href="directory-info.php?id=<?=$id?>" tabindex="-1"><?=$name?></a></h2>
                           <p ><?=$txt?></p>
                         </div></div>
                         </div>
@@ -117,7 +117,7 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                         <div class="col-6 block3" >
                         <div class="box-info "  style="">
                            <?php 
-                          $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
+                          $block = "select * from directory where vin_leader = 1 order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
                           $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
@@ -132,23 +132,24 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                             }
                             $thumbnail = $key['thumbnail'];
                             $txt       = $key['intro'];
+                            $id       = $key['id'];
                           }
                            
                            $OFFSET = $OFFSET + 1 ;
                           
 
                            ?>
-                          <h2 ><a href="#" tabindex="-1"><?=$name?></a></h2>
+                          <h2 ><a href="directory-info.php?id=<?=$id?>" tabindex="-1"><?=$name?></a></h2>
                           <p ><?=$txt?></p>
                         </div></div>
-                        <div class="col-6 block4" ><img src="<?=$thumbnail?>"></div>
+                        <div class="col-6 block4" ><a href="directory-info.php?id=<?=$id?>"><img src="<?=$thumbnail?>"></a></div>
                       </div>
                     </div>
                     
                     <div class="col-6">
                         <div class="row">
                           <?php 
-                          $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
+                          $block = "select * from directory where vin_leader = 1 order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
                           $key    = select_one($block);
                           if ($key!= null) {
                             $name      = $key['name'];
@@ -163,16 +164,17 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                             }
                             $thumbnail = $key['thumbnail'];
                             $txt       = $key['intro'];
+                            $id       = $key['id'];
                           }
                            
                            $OFFSET = $OFFSET + 1 ;
                           
 
                            ?>
-                        <div class="col-6 block5" ><img src="<?=$thumbnail?>"></div>
+                        <div class="col-6 block5" ><a href="directory-info.php?id=<?=$id?>"><img src="<?=$thumbnail?>"></a></div>
                         <div class="col-6 block6" >
                         <div class="box-info "  style="">
-                          <h2 ><a href="#" tabindex="-1"><?=$name?></a></h2>
+                          <h2 ><a href="directory-info.php?id=<?=$id?>" tabindex="-1"><?=$name?></a></h2>
                           <p ><?=$txt?></p>
                         </div></div>
                       </div>
@@ -181,10 +183,10 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                       <div class="box-info "  style="">
                         <?php 
                          
-                          $block = "select * from carousel_multiple order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
+                          $block = "select * from directory where vin_leader = 1 order by id ASC LIMIT 1 OFFSET ".$OFFSET." ";
                           $key    = select_one($block);
                           if ($key!= null) {
-                            $name  = $key['name'];
+                            $name1  = $key['name'];
                             $a='../../';
                             $b=" ".$key["thumbnail"];
                             if(strpos($b,$a)){ //  kiểm tra a có trong b không
@@ -194,17 +196,18 @@ Professor, College of Engineering and Computer Science<br>Distinguished Fellow, 
                                  $key["thumbnail"] = $key["thumbnail"] ;
                            
                             }
-                            $thumbnail = $key['thumbnail'];
-                            $txt       = $key['intro'];
+                            $thumbnail1 = $key['thumbnail'];
+                            $txt1       = $key['intro'];
+                            $id1       = $key['id'];
                           }
                             
                            $OFFSET = $OFFSET + 1 ;
               
                            ?>
-                          <h2 ><a href="#" tabindex="-1"><?=$name?></a></h2>
-                          <p ><?=$txt?></p>
+                          <h2 ><a href="directory-info.php?id=<?=$id1?>" tabindex="-1"><?=$name1?></a></h2>
+                          <p ><?=$txt1?></p>
                         </div></div>
-                        <div class="col-6 block8" ><img src="<?=$thumbnail?>"></div>
+                        <div class="col-6 block8" ><a href="directory-info.php?id=<?=$id1?>"><img src="<?=$thumbnail1?>"></a></div>
                       </div>
                     </div>
               <div class="mask rgba-black-light"></div>
