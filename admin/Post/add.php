@@ -3,8 +3,12 @@ session_start();
 require_once ('../../db/dbhelper.php');	
 require_once('../check_admin.php');	
     
-
-$id =  $title = $thumbnail = $content = $category  = '';
+$id_now = ' select id from user where user_name = "'.$_SESSION['username'].'"';
+		$id_user     = select_one($id_now);
+		if ($id_user != null) {
+			$id_user = $id_user['id'];
+		}
+$id =  $title = $thumbnail = $content=$intro = $category  = '';
 if (!empty($_POST)) {
 	if (isset($_POST['id'])) {
 		$id = $_POST['id'];
@@ -24,16 +28,20 @@ if (!empty($_POST)) {
 		$content = $_POST['content'];
 		$content = str_replace('"', '\\"', $content);
 	}
+	if (isset($_POST['intro'])) {
+		$intro = $_POST['intro'];
+		$intro = str_replace('"', '\\"', $intro);
+	}
 
 
 	if (!empty($title)) {
 		//Luu vao database
 		if ( (!isset($_GET['id'])) && $id == '') {
 
-			$sql = 'insert into post(name, thumbnail, content, id_category) values("'.$title.'", "'.$thumbnail.'", "'.$content.'", '.$category.')';
+			$sql = 'insert into post(name, thumbnail, content, intro, id_category,id_user) values("'.$title.'", "'.$thumbnail.'", "'.$content.'", "'.$intro.'", '.$category.','.$id_user.')';
 		} else {
 			$id      = $_GET['id'];
-			$sql = 'update post set name = "'.$title.'", thumbnail = "'.$thumbnail.'", content = "'.$content.'", id_category = '.$category.' where id = '.$id;
+			$sql = 'update post set name = "'.$title.'", thumbnail = "'.$thumbnail.'", content = "'.$content.'", intro = "'.$intro.'", id_category = '.$category.' where id = '.$id;
 		}
 
 			 select($sql);
@@ -60,6 +68,7 @@ if (isset($_GET['id'])) {
 		$id_cate = $post['id_category'];
 		$thumbnail   = $post['thumbnail'];	
 		$content     = $post['content'];
+		$intro     = $post['intro'];
 		;
 	}
 }
@@ -130,6 +139,22 @@ if (isset($_GET['id'])) {
 					  	<?php } ?>
 					  	 </select>
 					  	  
+
+
+
+
+
+
+
+        </div>
+
+		<div style="margin-left:0px;" id="contact">
+          <h2>Description</h2>
+
+          <div>
+            <textarea id="intro" name="intro" rows="10" cols="50" maxlength="4000" ><?=$intro?></textarea>
+          </div>
+
             </div>
 
             <hr>

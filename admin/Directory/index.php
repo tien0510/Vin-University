@@ -207,7 +207,7 @@ else{
 	<?php require_once('pagination.php'); ?>
 	<script type="text/javascript">
 		function deleteProduct(id) {
-			var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+			var option = confirm("Are you sure you want to delete this directory ?")
 			if(!option) {
 				return;
 			}

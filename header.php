@@ -52,7 +52,7 @@ if (isset($_SESSION['username'])) {
 			<div class="head_bottom_right">
 				<ul class="parent">
 					<li class="boder">
-						<a href="#">About VinUniversity</a>
+						<a href="new_event.php">About VinUniversity</a>
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
@@ -68,7 +68,7 @@ if (isset($_SESSION['username'])) {
 									<a href="#">Strategic Collaborators and Partners</a>
 								</li>
 								<li>
-									<a href="#">News & Events</a>
+									<a href="new_event.php">News & Events</a>
 								</li>
 							</ul>
 						</div>
@@ -196,7 +196,7 @@ if (isset($_SESSION['username'])) {
 					<?php if ($status == 1){?>
 						<a href="#">Hello <?=$_SESSION['username']?></a>
 					<?php }else{?>
-						<a href="manage.php">Hello <?=$_SESSION['username']?></a>
+						<a href="">Hello <?=$_SESSION['username']?></a>
 
 				<?php	}  ?>
 					
@@ -205,11 +205,7 @@ if (isset($_SESSION['username'])) {
 								<li>
 									<a href="logout.php">Logout</a>
 								</li>
-								<?php if ($status == 0) {?>
-								<li>
-									<a href="post.php">Post</a>
-								</li>
-							<?php }?> 
+
 								<?php if ($status == 1) {?>
 								<li>
 									<a href="admin/Account/index.php">Management page</a>

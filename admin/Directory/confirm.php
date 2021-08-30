@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
 
 	 echo "<script>
       alert('Thao Tác Thành Công');
-      window.location='http://localhost/vin/admin/Post/index.php';
+      window.location='http://localhost/vin/admin/Directory/index.php';
       </script>";
 	// header('Location: index.php');
 	die();

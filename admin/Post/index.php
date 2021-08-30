@@ -102,6 +102,7 @@ if (isset($_GET['id_category'])) {
 							<th width="50px">Numbers</th>
 							<th>Name </th>
 							<th>Thumbnail</th>
+							<th >Posted by</th>
 							<th width="200px">Category</th>
 						</tr>
 					</thead>
@@ -115,6 +116,11 @@ $sql = "select * from post ".$where."";
 $postList = select_list($sql);
 $index =1;
 foreach ($postList as $item) {
+	$poster 	= "select user_name from user where id = " .$item['id_user'];
+	$get_name   = select_one($poster);
+	if ($get_name != null) {
+		$get_name = $get_name['user_name'];
+	}
 	$cate = " select name_category from category where id = " .$item['id_category'];
 	$category = select_one($cate);	
 	if ($category != null) {
@@ -134,6 +140,7 @@ else{
 				<td width="350px"><?=$item['name']?></td>
 				<td><img src="<?=$item['thumbnail']?>" style="width: 100px;height :80px"/>
 				</td>
+				<td width="130px"><?=$get_name?></td>
 				<td width="350px"><?=$category?></td>
 				<td>
 				<a href="add.php?id=<?=$item['id']?>">
@@ -154,7 +161,7 @@ else{
 
 	<script type="text/javascript">
 		function deleteProduct(id) {
-			var option = confirm('Bạn có chắc chắn muốn xoá danh mục này không?')
+			var option = confirm('Are you sure you want to delete this post ?')
 			if(!option) {
 				return;
 			}
