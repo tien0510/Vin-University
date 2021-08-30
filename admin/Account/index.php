@@ -26,14 +26,15 @@ require_once('../check_admin.php');
 <body style="background: url('../../images/6.PNG') ; overflow-y: hidden; ">
 	<ul class="nav nav-tabs">
 	  
-	  <li class="nav-item">
-	    <a class="nav-link" href="../Directory/">Directory Management</a>
-	  </li>
+	 
 	  <li class="nav-item">
 	    <a class="nav-link active" href="#">Account Management</a>
 	  </li>
 	   <li class="nav-item">
-	    <a class="nav-link " style="color: #ffffffff;border-right: 2px solid white;font-weight:bold" href="../Post/">Post Management</a>
+	    <a class="nav-link " style="border-right: 2px solid white;" href="../Post/">Post Management</a>
+	     <li class="nav-item">
+	    <a class="nav-link" href="../Directory/">Directory Management</a>
+	  </li>
 	  </li>
 
 	</ul>

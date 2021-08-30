@@ -114,13 +114,13 @@ if (isset($_GET['id'])) {
 <body  style="    background:url('https://st.quantrimang.com/photos/image/2020/07/30/Hinh-Nen-Trang-9.jpg');">
 	<ul class="nav nav-tabs">
 	  <li class="nav-item">
-	    <a class="nav-link"  href="../account/">Account Management</a>
-	  </li>
-	  <li class="nav-item">
-	    <a class="nav-link active	" href="index.php">Directory Management</a>
+	    <a class="nav-link" href="../account/">Account Management</a>
 	  </li>
 	   <li class="nav-item">
-	    <a class="nav-link " href="../Post/">Post Management</a>
+	    <a class="nav-link "  href="../Post/">Post Management</a>
+	  </li>
+	   <li class="nav-item">
+	    <a class="nav-link active" href="#">Directory Management</a>
 	  </li>
 	</ul>
 

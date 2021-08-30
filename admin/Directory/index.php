@@ -47,13 +47,13 @@ $where = "where status is not null";
 	<ul class="nav nav-tabs">
 
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Directory Management</a>
-	  </li>
-	  	  <li class="nav-item">
 	    <a class="nav-link" href="../account/">Account Management</a>
 	  </li>
 	   <li class="nav-item">
 	    <a class="nav-link "  href="../Post/">Post Management</a>
+	  </li>
+	   <li class="nav-item">
+	    <a class="nav-link active" href="#">Directory Management</a>
 	  </li>
 	</ul>
 

@@ -53,12 +53,11 @@ if (isset($_GET['id_category'])) {
 </style>
 <body style="    background:url('http://khohinhdep.com/wp-content/uploads/2017/10/hinh-nen-dien-thoai-lg-v20-chat-luong-qhd-010.jpg');">
 	<ul class="nav nav-tabs">
-
 	  <li class="nav-item">
-	    <a class="nav-link active" href="#">Post Management</a>
-	  </li>
-	  	  <li class="nav-item">
 	    <a class="nav-link" href="../account/">Account Management</a>
+	  </li>
+	   <li class="nav-item">
+	    <a class="nav-link active" href="#">Post Management</a>
 	  </li>
 	   <li class="nav-item">
 	    <a class="nav-link "  href="../Directory/">Directory Management</a>
