@@ -124,7 +124,7 @@ if (isset($_GET['id'])) {
 					  
 					  <select style="padding-left: 42% ;font-size : 20px;" required="true" type="text" class="form-control" id="type" name="type" value="<?=$type_acc?>" >
 					  	<option  value="1" <?php if( $type_acc!="" && $type_acc==1) echo "selected"?> >Admin</option>
-					  	<option   value="0" <?php if( $type_acc!="" && $type_acc==0) echo "selected"?>>Guess</option>	 
+					  	<option   value="0" <?php if( $type_acc!="" && $type_acc==0) echo "selected"?>>Guest</option>	 
 					  </select>
 					</div>
 

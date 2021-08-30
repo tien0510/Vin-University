@@ -76,7 +76,7 @@ $index = 1;
 foreach ($userList as $item) {
 		if ($item['type']==0) {
 			
-			$type_acc = "Guess";
+			$type_acc = "Guest";
 		}
 		else{
 			$type_acc = "Admin";
