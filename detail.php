@@ -57,7 +57,7 @@
 
 
           <div class="details col-md-12">
-            <h3 class="mb-3 h3 text-secondary font-weight-bold about-intro-title"><?=$name?></h3>
+            <h3 class="mb-3 h3 text-secondary font-weight-bold about-intro-title"style ="color: #cd3c3f!important;"><?=$name?></h3>
             <div class="details col-md-12">
             <h3 class="sizes"><?=$intro?></h3>
         </div>
@@ -68,9 +68,7 @@
 </div>
 
 
-<div class="overview">
-
-
+<div class="overview" style=" margin-top : -5%">
 		<section class="recruitment-detail">
               <div class="container col-11">
                <article class="recruitment-detail-article post-detail">
@@ -106,7 +104,7 @@
           </div>
 </section>
 
-<section class="search-wrap pb-5"><hr style="width: 90%;">
+<section class="search-wrap pb-5"><hr style="width: 90% ;color: #cd3c3f!important;";>
           <div class="container pb-5">
 
           </div>

@@ -99,7 +99,7 @@ $where = "where status is not null";
 
 
 
-  $numberpage = !empty($_GET['per_page'])?$_GET['per_page'] : 10 ;// số lượng trên 1 trang
+  $numberpage = !empty($_GET['per_page'])?$_GET['per_page'] : 15 ;// số lượng trên 1 trang
   $page =  !empty($_GET['page'])?$_GET['page']:1 ;      // trang hiện tại 
   $OFFSET = ($page - 1)*$numberpage; // lấy offset từ trang tương ứng
   if (isset($_GET['status'])) {

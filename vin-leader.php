@@ -199,19 +199,20 @@ for($num = 1 ; $num <= $total_slides; $num++ ) { ?>
                             $thumbnail1 = $key['thumbnail'];
                             $txt1       = $key['intro'];
                             $id1       = $key['id'];
-                          }
+                          }?>
+                          
+                          <h2 ><a href="directory-info.php?id=<?=$id1?>" tabindex="-1"><?=$name1?></a></h2>
+                          <p ><?=$txt1?></p>
+                        </div></div>
+                        <div class="col-6 block8" ><a href="directory-info.php?id=<?=$id1?>"><img src="<?=$thumbnail1?>"></a></div><?php
                             
                            $OFFSET = $OFFSET + 1 ;
               
                            ?>
-                          <h2 ><a href="directory-info.php?id=<?=$id1?>" tabindex="-1"><?=$name1?></a></h2>
-                          <p ><?=$txt1?></p>
-                        </div></div>
-                        <div class="col-6 block8" ><a href="directory-info.php?id=<?=$id1?>"><img src="<?=$thumbnail1?>"></a></div>
                       </div>
                     </div>
-              <div class="mask rgba-black-light"></div>
-            </div>
+                   <div class="mask rgba-black-light"></div>
+                </div>
 
 
           </div>

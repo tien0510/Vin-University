@@ -47,11 +47,11 @@
          <?php 
         if (isset($_GET['searchText'])) {
            $searchText= $_GET['searchText'];
-           $where = " where name like '%".$searchText."%' or intro like '%".$searchText."%'  and status = 0 ";
+           $where = " where name like '%".$searchText."%' and status = 0 ";
          }
            else{
              $searchText="";
-             $where = " where name like '%".$searchText."%' or intro like '%".$searchText."%' and status = 0 ";
+             $where = " where name like '%".$searchText."%' and status = 0 ";
 
            }
             ?>
@@ -75,7 +75,7 @@
 
   $sql= "select * from directory ".$where." order by id ASC LIMIT " .$numberpage." OFFSET ".$OFFSET."";
   $sql_total      = "select * from directory ".$where."  ";
-  // print($sql);
+  // print($sql); 
   // print($sql_total);
   // exit();
 

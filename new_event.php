@@ -136,7 +136,7 @@
 
  ?>
 
-  <div class="container-fluid" style="padding-left:5% ; margin-bottom : 150px" >
+  <div class="container-fluid" style="padding-left:5% ; margin-bottom : 100px" >
         <div class="row">
     <?php 
 
