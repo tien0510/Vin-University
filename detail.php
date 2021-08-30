@@ -44,8 +44,7 @@
           }
           $thumbnail = $detail['thumbnail'];
 
-          $detail["intro"] = str_replace('[…]','' ,$detail["intro"]);
-
+          
       $intro = $detail['intro'];
       $overview = $detail['content'];
 
@@ -165,7 +164,7 @@
                 </div>
 
                 <div class="infor">
-                  <span class="infor_direc" ><?php echo"".$data['intro']."" ?></span>
+                  <span class="infor_direc" ><?php echo"".substr($data['intro'], 0 , 80)."" ?>[...]</span>
 
                 </div>
               </div>

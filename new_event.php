@@ -73,10 +73,7 @@
           }
           
           $thumbnail   = $data['thumbnail'];  
-
-        ?>
-
-   
+   ?>
        <div class="col-lg-4 col-sm-6 col-12" >
           <a href="detail.php?id=<?=$data['id']?>" style="width: 100%;" >
             <div class="item" style="width: 100%">
@@ -94,7 +91,7 @@
                 </div>
 
                 <div class="infor">
-                  <span class="infor_direc" ><?php echo"".$data['intro']."" ?></span>
+                  <span class="infor_direc" ><?php echo"".substr($data['intro'], 0 , 80)."" ?>[...]</span>
 
                 </div>
               </div>
@@ -176,7 +173,7 @@
                 </div>
 
                 <div class="infor">
-                  <span class="infor_direc" ><?php echo"".$data['intro']."" ?></span>
+                  <span class="infor_direc" ><?php echo"".substr($data['intro'], 0 , 80)."" ?>[...]</span>
 
                 </div>
               </div>

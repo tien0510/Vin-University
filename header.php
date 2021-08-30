@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
 			<div class="head_top_left">
 				<ul>
 					<li>
-						<a href="#">VISIT</a>
+						<a href="">VISIT</a>
 					</li>
 					<li>
 						<a href="directory.php">DIRECTORY</a>
@@ -56,16 +56,16 @@ if (isset($_SESSION['username'])) {
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="#">About The Founding Donor – Vingroup JSC</a>
+									<a href="">About The Founding Donor – Vingroup JSC</a>
 								</li>
 								<li>
-									<a href="#">About VinUniversity</a>
+									<a href="">About VinUniversity</a>
 								</li>
 								<li>
-									<a href="#">Governance</a>
+									<a href="">Governance</a>
 								</li>
 								<li>
-									<a href="#">Strategic Collaborators and Partners</a>
+									<a href="">Strategic Collaborators and Partners</a>
 								</li>
 								<li>
 									<a href="new_event.php">News & Events</a>
@@ -85,28 +85,28 @@ if (isset($_SESSION['username'])) {
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="#">Academics</a>
+									<a href="">Academics</a>
 								</li>
 								<li>
-									<a href="#">College of Business & Management</a>
+									<a href="">College of Business & Management</a>
 								</li>
 								<li>
-									<a href="#">College of Engineering & Computer Science</a>
+									<a href="">College of Engineering & Computer Science</a>
 								</li>
 								<li>
-									<a href="#">College of Health Sciences</a>
+									<a href="">College of Health Sciences</a>
 								</li>
 								<li>
-									<a href="#">Faculty of Arts and Sciences</a>
+									<a href="">Faculty of Arts and Sciences</a>
 								</li>
 								<li>
-									<a href="#">Registrar</a>
+									<a href="">Registrar</a>
 								</li>
 								<li>
-									<a href="#">Library</a>
+									<a href="">Library</a>
 								</li>
 								<li>
-									<a href="#">Canvas@VinUniversity</a>
+									<a href="">Canvas@VinUniversity</a>
 								</li>
 							</ul>
 						</div>
@@ -116,16 +116,16 @@ if (isset($_SESSION['username'])) {
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="#">VinUniversity Distinguished Lecture Series</a>
+									<a href="">VinUniversity Distinguished Lecture Series</a>
 								</li>
 								<li>
-									<a href="#">Research Seminars</a>
+									<a href="">Research Seminars</a>
 								</li>
 								<li>
-									<a href="#">Undergraduate Research</a>
+									<a href="">Undergraduate Research</a>
 								</li>
 								<li>
-									<a href="#">Seed Funding Program</a>
+									<a href="">Seed Funding Program</a>
 								</li>
 							</ul>
 						</div>
@@ -142,35 +142,35 @@ if (isset($_SESSION['username'])) {
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="#">Undergraduate</a>
+									<a href="">Undergraduate</a>
 								</li>
 								<li>
-									<a href="#">Postgraduate</a>
+									<a href="">Postgraduate</a>
 								</li>
 								<li>
-									<a href="#">Overseas Master/PhD Scholarships</a>
+									<a href="">Overseas Master/PhD Scholarships</a>
 								</li>
 							</ul>
 						</div>
 					</li>
 					<li class="boder">
-						<a href="#">Student Life</a>
+						<a href="">Student Life</a>
 						<div class="head_bottom_right_contenhover">
 							<ul>
 								<li>
-									<a href="#">Our Campus</a>
+									<a href="">Our Campus</a>
 								</li>
 								<li>
-									<a href="#">Life at VinUni</a>
+									<a href="">Life at VinUni</a>
 								</li>
 								<li>
-									<a href="#">First Year Experience</a>
+									<a href="">First Year Experience</a>
 								</li>
 								<li>
-									<a href="#">Career Services</a>
+									<a href="">Career Services</a>
 								</li>
 								<li>
-									<a href="#">Library</a>
+									<a href="">Library</a>
 								</li>
 								
 							</ul>
@@ -194,7 +194,7 @@ if (isset($_SESSION['username'])) {
 				<?php } else{ ?>
 
 					<?php if ($status == 1){?>
-						<a href="#">Hello <?=$_SESSION['username']?></a>
+						<a href="">Hello <?=$_SESSION['username']?></a>
 					<?php }else{?>
 						<a href="">Hello <?=$_SESSION['username']?></a>
 
